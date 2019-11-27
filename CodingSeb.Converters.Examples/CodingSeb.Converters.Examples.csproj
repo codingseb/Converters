@@ -4,6 +4,10 @@
     <OutputType>WinExe</OutputType>
     <TargetFrameworks>netcoreapp3.0;net47</TargetFrameworks>
     <UseWPF>true</UseWPF>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageLicenseFile></PackageLicenseFile>
+    <Copyright></Copyright>
+    <Company>CodingSeb.Converters.Examples</Company>
   </PropertyGroup>
 
   <ItemGroup>

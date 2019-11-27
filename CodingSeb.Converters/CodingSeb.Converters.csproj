@@ -6,10 +6,20 @@
     <Description>Some Converters to use in WPF</Description>
     <PackageReleaseNotes />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <Copyright>Copyright © Coding Seb 2019</Copyright>
+    <PackageProjectUrl>https://github.com/codingseb/Converters</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CodingSeb.ExpressionEvaluator" Version="1.4.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
