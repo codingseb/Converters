@@ -1,0 +1,57 @@
+﻿<Window x:Class="CodingSeb.Converters.Examples.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CodingSeb.Converters.Examples"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="PTM.WPFConverters Tests Window" Height="900" Width="827">
+    <Window.Resources>
+        <Thickness x:Key="PanelMargin" 
+            Left="5" Right="5"
+            Top="10"  Bottom="10" />
+        <Thickness x:Key="PanelBorderThickness" 
+            Left="0" Right="0"
+            Top="0"  Bottom="1" />
+        <SolidColorBrush x:Key="PanelBorderBrush" Color="LightGray" />
+    </Window.Resources>
+<DockPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Margin="5">
+                <local:CustomBoolToVisibilityPanel 
+                    Margin="{StaticResource PanelMargin}" 
+                    BorderBrush="{StaticResource PanelBorderBrush}" 
+                    BorderThickness="{StaticResource PanelBorderThickness}"/>
+                <local:ReverseBoolPanel 
+                    Margin="{StaticResource PanelMargin}"  
+                    BorderBrush="{StaticResource PanelBorderBrush}" 
+                    BorderThickness="{StaticResource PanelBorderThickness}"/>
+                <local:EmptyStringToDefaultValuePanel 
+                    Margin="{StaticResource PanelMargin}"  
+                    BorderBrush="{StaticResource PanelBorderBrush}" 
+                    BorderThickness="{StaticResource PanelBorderThickness}"/>
+                <local:ColorToSolidColorBrushPanel 
+                    Margin="{StaticResource PanelMargin}"  
+                    BorderBrush="{StaticResource PanelBorderBrush}"  
+                    BorderThickness="{StaticResource PanelBorderThickness}"/>
+                <local:ChainingConverterPanel
+                    Margin="{StaticResource PanelMargin}"  
+                    BorderBrush="{StaticResource PanelBorderBrush}"  
+                    BorderThickness="{StaticResource PanelBorderThickness}"/>
+                <local:StringCasingPanel 
+                    Margin="{StaticResource PanelMargin}" />
+                <local:IntToBoolPanel 
+                    Margin="{StaticResource PanelMargin}" />
+                <local:ExclusiveBoolToEnumOrEquatablePanel
+                    Margin="{StaticResource PanelMargin}" />
+                <local:ExpressionEvalPanel 
+                    Margin="{StaticResource PanelMargin}"/>
+                <local:MappingConverterPanel
+                    Margin="{StaticResource PanelMargin}" />
+                <local:TypeCheckingPanel
+                    Margin="{StaticResource PanelMargin}" />
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

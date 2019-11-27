@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="CodingSeb.Converters.Examples.StringCasingPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CodingSeb.Converters.Examples"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             >
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Label Content="_StringCasingConverter test" 
+                   Target="{Binding ElementName=txtStringCasingConverter}"/>
+            <TextBox x:Name="txtStringCasingConverter" Margin="5,0" Width="300"/>
+        </StackPanel>
+        <Border BorderBrush="Gray" BorderThickness="1">
+            <ScrollViewer Height="100" HorizontalAlignment="Stretch">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="Normal : " />
+                        <TextBlock Text="{Binding Text, 
+                            ElementName=txtStringCasingConverter, 
+                            Mode=OneWay, 
+                            Converter={StringCaseConverter Normal}}"
+                        VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="LowerCase : " />
+                        <TextBlock Text="{Binding Text, 
+                            ElementName=txtStringCasingConverter, 
+                            Mode=OneWay, 
+                            Converter={StringCaseConverter lowercase}}"
+                        VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="UpperCase : " />
+                        <TextBlock Text="{Binding Text, 
+                            ElementName=txtStringCasingConverter, 
+                            Mode=OneWay, 
+                            Converter={StringCaseConverter UPPERCASE}}"
+                        VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="First Letter Upper : " />
+                        <TextBlock Text="{Binding Text, 
+                            ElementName=txtStringCasingConverter, 
+                            Mode=OneWay, 
+                            Converter={StringCaseConverter CasingMode=Firstletterupper}}"
+                        VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="First Letter Lower : " />
+                        <TextBlock Text="{Binding Text, 
+                            ElementName=txtStringCasingConverter, 
+                            Mode=OneWay, 
+                            Converter={StringCaseConverter CasingMode=firstLetterLower}}"
+                        VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="First Letter of each word upper : " />
+                        <TextBlock Text="{Binding Text, 
+                            ElementName=txtStringCasingConverter, 
+                            Mode=OneWay, 
+                            Converter={StringCaseConverter CasingMode=FirstLetterOfEachWordUpper, CharsToConsiderAsWordBoundary='-_[]{}()=/' }}"
+                        VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="First Letter of each word lower : " />
+                        <TextBlock Text="{Binding Text, 
+                            ElementName=txtStringCasingConverter, 
+                            Mode=OneWay, 
+                            Converter={StringCaseConverter CasingMode=firstletterofeachwordlower}}"
+                        VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="Chained (LowerCase and First Letter Upper) : " />
+                        <TextBlock Text="{Binding Text, 
+                            ElementName=txtStringCasingConverter, 
+                            Mode=OneWay, 
+                            Converter={ChainingConverter Converter1={StringCaseConverter CasingMode=lowercase}, Converter2={StringCaseConverter CasingMode=Firstletterupper} }}"
+                        VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="Chained (UpperCase and First Letter Lower) : " />
+                        <TextBlock Text="{Binding Text, 
+                            ElementName=txtStringCasingConverter, 
+                            Mode=OneWay, 
+                            Converter={ChainingConverter Converter1={StringCaseConverter CasingMode=UPPERCASE}, Converter2={StringCaseConverter CasingMode=firstLetterLower} }}"
+                        VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="CodingSeb.Converters.Examples.ExclusiveBoolToEnumOrEquatablePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CodingSeb.Converters.Examples"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <WrapPanel>
+        <StackPanel Margin="5" VerticalAlignment="Top">
+            <RadioButton Content="Test"
+                         IsChecked="{Binding StringValue, Converter={ExclusiveBoolToEnumOrEquatableParameterConverter}, ConverterParameter='Test'}" />
+            <RadioButton Content="Hello"
+                         IsChecked="{Binding StringValue, Converter={ExclusiveBoolToEnumOrEquatableParameterConverter}, ConverterParameter='Hello'}" />
+            <RadioButton Content="Toto"
+                         IsChecked="{Binding StringValue, Converter={ExclusiveBoolToEnumOrEquatableParameterConverter}, ConverterParameter='Toto'}" />
+            <TextBlock Text="{Binding StringValue, StringFormat='Result : {0}'}" />
+        </StackPanel>
+        <StackPanel Margin="5" VerticalAlignment="Top">
+            <RadioButton Content="10"
+                         IsChecked="{Binding IntValue, Converter={ExclusiveBoolToEnumOrEquatableParameterConverter}, ConverterParameter=10}" />
+            <RadioButton Content="50"
+                         IsChecked="{Binding IntValue, Converter={ExclusiveBoolToEnumOrEquatableParameterConverter}, ConverterParameter=50}" />
+            <RadioButton Content="100"
+                         IsChecked="{Binding IntValue, Converter={ExclusiveBoolToEnumOrEquatableParameterConverter}, ConverterParameter=100}" />
+            <Button Width="{Binding IntValue}" Content="Result"/>
+        </StackPanel>
+        <StackPanel Margin="5" VerticalAlignment="Top">
+            <RadioButton Content="Visible"
+                         IsChecked="{Binding VisibilityValue, Converter={ExclusiveBoolToEnumOrEquatableParameterConverter}, ConverterParameter={x:Static Visibility.Visible}}" />
+            <RadioButton Content="Hidden"
+                         IsChecked="{Binding VisibilityValue, Converter={ExclusiveBoolToEnumOrEquatableParameterConverter}, ConverterParameter={x:Static Visibility.Hidden}}" />
+            <RadioButton Content="Collapsed"
+                         IsChecked="{Binding VisibilityValue, Converter={ExclusiveBoolToEnumOrEquatableParameterConverter}, ConverterParameter={x:Static Visibility.Collapsed}}" />
+            <Button Visibility="{Binding VisibilityValue}" Content="Result"/>
+            <Separator/>
+        </StackPanel>
+        <StackPanel Margin="5" VerticalAlignment="Top" >
+            <RadioButton Content="Red"
+                         IsChecked="{Binding BrushValue, Converter={ExclusiveBoolToEnumOrEquatableParameterConverter}, ConverterParameter=Red}" />
+            <RadioButton Content="Blue"
+                         IsChecked="{Binding BrushValue, Converter={ExclusiveBoolToEnumOrEquatableParameterConverter}, ConverterParameter=Blue}" />
+            <RadioButton Content="Yellow"
+                         IsChecked="{Binding BrushValue, Converter={ExclusiveBoolToEnumOrEquatableParameterConverter}, ConverterParameter=Yellow}" />
+            <Label Width="50" Background="{Binding BrushValue}" BorderBrush="Black" BorderThickness="1" Content=" " />
+        </StackPanel>
+    </WrapPanel>
+</UserControl>

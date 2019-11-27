@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="CodingSeb.Converters.Examples.IntToBoolPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CodingSeb.Converters.Examples"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             >
+    <UserControl.DataContext>
+        <local:IntToBoolViewModel/>
+    </UserControl.DataContext>
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Label Content="_IntToBoolConverter test" Target="{Binding ElementName=txtNumber}" />
+            <TextBox  x:Name="txtNumber" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="100" PreviewKeyDown="txtNumber_PreviewKeyDown" />
+        </StackPanel>
+        <Border BorderBrush="Gray" BorderThickness="1">
+            <ScrollViewer Height="100" HorizontalAlignment="Stretch">
+                <StackPanel HorizontalAlignment="Stretch">
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter DefaultValue=False}}" Content="DefaultValue=False" />
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter DefaultValue=True}}" Content="DefaultValue=True" />
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter TrueValue=0}}" Content="TrueValue=0" />
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter FalseValue=0, DefaultValue=True}}" Content="FalseValue=0, DefaultValue=True" />
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter FalseValue=0, TrueValue=1}}" Content="FalseValue=0, TrueValue=1" />
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter SmallerThanFalseValue=10, DefaultValue=true}}" Content="SmallerThanFalseValue=10, DefaultValue=true" />
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter SmallerThanTrueValue=5}}" Content="SmallerThanTrueValue=5" />
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter BiggerThanFalseValue=10, DefaultValue=true}}" Content="BiggerThanFalseValue=10, DefaultValue=true" />
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter BiggerThanTrueValue=5}}" Content="BiggerThanTrueValue=5" />
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter FalseValue=10, SmallerThanFalseValue=10, DefaultValue=true}}" Content=" FalseValue=10, SmallerThanFalseValue=10, DefaultValue=true" />
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter TrueValue=5, SmallerThanTrueValue=5}}" Content="TrueValue=5, SmallerThanTrueValue=5" />
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter FalseValue=10, BiggerThanFalseValue=10, DefaultValue=true}}" Content="FalseValue=10, BiggerThanFalseValue=10, DefaultValue=true" />
+                    <CheckBox Margin="5,0" IsChecked="{Binding Value, Converter={IntToBoolConverter TrueValue=5, BiggerThanTrueValue=5}}" Content="TrueValue=5, BiggerThanTrueValue=5" />
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </DockPanel>
+</UserControl>
