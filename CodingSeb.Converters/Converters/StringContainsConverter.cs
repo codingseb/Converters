@@ -19,7 +19,7 @@ namespace CodingSeb.Converters
         /// <summary>
         /// The string to search
         /// </summary>
-        public string ContainsString { get; set; } = "";
+        public string ContainsString { get; set; } = string.Empty;
 
         /// <summary>
         /// if <c>true</c>, ignore case of the string to find ContainsString, if <c>false</c> take care of the case. By default : false
