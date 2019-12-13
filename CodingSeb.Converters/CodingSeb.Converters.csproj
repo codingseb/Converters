@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.0;net4.7</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.0;net47</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <Description>Some Converters to use in WPF</Description>
     <PackageReleaseNotes />

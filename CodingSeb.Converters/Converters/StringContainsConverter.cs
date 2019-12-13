@@ -22,22 +22,15 @@ namespace CodingSeb.Converters
         public string ContainsString { get; set; } = string.Empty;
 
         /// <summary>
-        /// if <c>true</c>, ignore case of the string to find ContainsString, if <c>false</c> take care of the case. By default : false
+        /// To specify the culture and case of the equals
         /// </summary>
-        public bool IgnoreCase { get; set; }
+        public StringComparison StringComparison { get; set; }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner.Value;
 
-            if (IgnoreCase)
-            {
-                return value.ToString().ToLower().Contains(ContainsString.ToLower().EscapeForXaml());
-            }
-            else
-            {
-                return value.ToString().Contains(ContainsString.EscapeForXaml());
-            }
+            return value.ToString().IndexOf(ContainsString.EscapeForXaml(), StringComparison) > -1;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

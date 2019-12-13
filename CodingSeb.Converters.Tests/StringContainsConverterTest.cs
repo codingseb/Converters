@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Shouldly;
+using System;
 
 namespace CodingSeb.Converters.Tests
 {
@@ -17,7 +18,7 @@ namespace CodingSeb.Converters.Tests
             ((bool)converter.Convert("This is a Test !!!", null, null, null)).ShouldBeTrue();
             ((bool)converter.Convert("This is a test !!!", null, null, null)).ShouldBeFalse();
 
-            converter.IgnoreCase = true;
+            converter.StringComparison = StringComparison.OrdinalIgnoreCase;
 
             ((bool)converter.Convert("This is a test !!!", null, null, null)).ShouldBeTrue();
         }

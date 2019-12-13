@@ -36,7 +36,7 @@ namespace CodingSeb.Converters.Converters
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner.Value;
 
-            return value.ToString().Equals(Value, StringComparison);
+            return value.ToString().Equals(Value.EscapeForXaml(), StringComparison);
         }
 
         /// <summary>
