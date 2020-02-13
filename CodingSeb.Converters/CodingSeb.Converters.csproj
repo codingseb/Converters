@@ -10,7 +10,8 @@
     <Copyright>Copyright © Coding Seb 2019</Copyright>
     <PackageProjectUrl>https://github.com/codingseb/Converters</PackageProjectUrl>
     <Authors>CodingSeb</Authors>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
