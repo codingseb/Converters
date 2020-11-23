@@ -13,8 +13,8 @@ namespace CodingSeb.Converters.Tests
         {
             ChainingConverter masterConverter = new ChainingConverter()
             {
-                Converter1 = new ReverseBoolConverter(),
-                Converter2 = new ReverseBoolConverter()
+                Converter1 = new BoolReverseConverter(),
+                Converter2 = new BoolReverseConverter()
             };
             ((bool)masterConverter.Convert(true, null, null, null)).ShouldBeTrue();
             ((bool)masterConverter.Convert(false, null, null, null)).ShouldBeFalse();
@@ -26,8 +26,8 @@ namespace CodingSeb.Converters.Tests
         {
             ChainingConverter masterConverter = new ChainingConverter()
             {
-                Converter1 = new ReverseBoolConverter(),
-                Converter2 = new ReverseBoolConverter()
+                Converter1 = new BoolReverseConverter(),
+                Converter2 = new BoolReverseConverter()
             };
             ((bool)masterConverter.ConvertBack(true, null, null, null)).ShouldBeTrue();
             ((bool)masterConverter.ConvertBack(false, null, null, null)).ShouldBeFalse();
@@ -39,7 +39,7 @@ namespace CodingSeb.Converters.Tests
         {
             ChainingConverter masterConverter = new ChainingConverter()
             {
-                Converter1 = new ReverseBoolConverter(),
+                Converter1 = new BoolReverseConverter(),
                 Converter2 = new CustomBoolToVisibilityConverter()
             };
             ((Visibility)masterConverter.Convert(true, null, null, null)).ShouldBe(Visibility.Collapsed);
@@ -52,7 +52,7 @@ namespace CodingSeb.Converters.Tests
         {
             ChainingConverter masterConverter = new ChainingConverter()
             {
-                Converter1 = new ReverseBoolConverter(),
+                Converter1 = new BoolReverseConverter(),
                 Converter2 = new CustomBoolToVisibilityConverter()
             };
             ((bool)masterConverter.ConvertBack(Visibility.Collapsed, null, null, null)).ShouldBeTrue();
@@ -71,7 +71,7 @@ namespace CodingSeb.Converters.Tests
                 SmallerThanFalseValue = 1
             };
             masterConverter.Converters.Add(intToBoolConverter);
-            masterConverter.Converters.Add(new ReverseBoolConverter());
+            masterConverter.Converters.Add(new BoolReverseConverter());
             masterConverter.Converters.Add(new CustomBoolToVisibilityConverter());
 
             ((Visibility)masterConverter.Convert(-3, null, null, null)).ShouldBe(Visibility.Visible);

@@ -12,9 +12,18 @@ namespace CodingSeb.Converters
     [ContentProperty(nameof(ConvertToType))]
     public class ConvertToTypeConverter : BaseConverter, IValueConverter
     {
+        public ConvertToTypeConverter()
+        {}
+
+        public ConvertToTypeConverter(Type convertToType)
+        {
+            ConvertToType = convertToType;
+        }
+
         /// <summary>
         /// The type in which to convert the binding if possible.
         /// </summary>
+        [ConstructorArgument("convertToType")]
         public Type ConvertToType { get; set; }
 
         /// <summary>

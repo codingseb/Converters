@@ -10,6 +10,6 @@
         <CheckBox x:Name="chkReverseBool" 
                   Content="_ReverseBoolConverter test" 
                   Margin="0,0,10,0"/>
-        <CheckBox Content="Reversed Value"  IsChecked="{Binding IsChecked, ElementName=chkReverseBool, Converter={ReverseBoolConverter}, Mode=TwoWay}" />
+        <CheckBox Content="Reversed Value"  IsChecked="{Binding IsChecked, ElementName=chkReverseBool, Converter={BoolReverseConverter}, Mode=TwoWay}" />
     </StackPanel>
 </UserControl>

@@ -10,7 +10,7 @@ namespace CodingSeb.Converters.Tests
         [Test]
         public void ConvertTrueToFalse()
         {
-            ReverseBoolConverter converter = new ReverseBoolConverter();
+            BoolReverseConverter converter = new BoolReverseConverter();
 
             ((bool)converter.Convert(true, typeof(bool), null, null)).ShouldBeFalse();
         }
@@ -19,7 +19,7 @@ namespace CodingSeb.Converters.Tests
         [Test]
         public void ConvertFalseToTrue()
         {
-            ReverseBoolConverter converter = new ReverseBoolConverter();
+            BoolReverseConverter converter = new BoolReverseConverter();
 
             ((bool)converter.Convert(false, typeof(bool), null, null)).ShouldBeTrue();
         }
@@ -28,7 +28,7 @@ namespace CodingSeb.Converters.Tests
         [Test]
         public void ConvertBackTrueToFalse()
         {
-            ReverseBoolConverter converter = new ReverseBoolConverter();
+            BoolReverseConverter converter = new BoolReverseConverter();
 
             ((bool)converter.ConvertBack(true, typeof(bool), null, null)).ShouldBeFalse();
         }
@@ -37,7 +37,7 @@ namespace CodingSeb.Converters.Tests
         [Test]
         public void ConvertBackFalseToTrue()
         {
-            ReverseBoolConverter converter = new ReverseBoolConverter();
+            BoolReverseConverter converter = new BoolReverseConverter();
 
             ((bool)converter.ConvertBack(false, typeof(bool), null, null)).ShouldBeTrue();
         }

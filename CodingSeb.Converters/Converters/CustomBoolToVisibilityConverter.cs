@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace CodingSeb.Converters
 {
@@ -12,6 +13,19 @@ namespace CodingSeb.Converters
     /// </summary>
     public class CustomBoolToVisibilityConverter : BaseConverter, IValueConverter
     {
+        public CustomBoolToVisibilityConverter()
+        {}
+
+        public CustomBoolToVisibilityConverter(Visibility trueValue)
+        {
+            TrueValue = trueValue;
+        }
+        public CustomBoolToVisibilityConverter(Visibility trueValue, Visibility falseValue)
+        {
+            TrueValue = trueValue;
+            FalseValue = falseValue;
+        }
+
         public Visibility? InDesigner { get; set; }
 
         /// <summary>
@@ -30,12 +44,14 @@ namespace CodingSeb.Converters
         /// The Value of the visibility when the source value is true
         /// Default is Visibility.Visible
         /// </summary>
+        [ConstructorArgument("trueValue")]
         public Visibility TrueValue { get; set; }
 
         /// <summary>
         /// The Value of the visibility when the source value is true
         /// Default is Visibility.Collapsed
         /// </summary>
+        [ConstructorArgument("falseValue")]
         public Visibility FalseValue { get; set; } = Visibility.Collapsed;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

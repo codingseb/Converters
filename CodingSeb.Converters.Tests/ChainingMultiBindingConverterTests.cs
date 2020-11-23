@@ -18,7 +18,7 @@ namespace CodingSeb.Converters.Tests
                 Expression = "bindings[0] && bindings[1]"
             };
             masterConverter.MultiValueConverter1 = expressionEvalMultiBindingConverter;
-            masterConverter.Converter2 = new ReverseBoolConverter();
+            masterConverter.Converter2 = new BoolReverseConverter();
 
             ((bool)masterConverter.Convert(new object[] { true, true }, null, null, null)).ShouldBeFalse();
             ((bool)masterConverter.Convert(new object[] { true, false }, null, null, null)).ShouldBeTrue();
@@ -42,7 +42,7 @@ namespace CodingSeb.Converters.Tests
 
             masterConverter.MultiValueConverter1 = stringFormatMultiBindingConverter;
             masterConverter.Converters.Add(expressionEvalConverter);
-            masterConverter.Converters.Add(new ReverseBoolConverter());
+            masterConverter.Converters.Add(new BoolReverseConverter());
 
             ((bool)masterConverter.Convert(new object[] { true, true }, null, null, null)).ShouldBeFalse();
             ((bool)masterConverter.Convert(new object[] { true, false }, null, null, null)).ShouldBeTrue();

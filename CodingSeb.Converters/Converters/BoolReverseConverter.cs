@@ -9,7 +9,7 @@ namespace CodingSeb.Converters
     /// <summary>
     /// Converter that just revert the given bool value in two way
     /// </summary>
-    public class ReverseBoolConverter : BaseConverter, IValueConverter
+    public class BoolReverseConverter : BaseConverter, IValueConverter
     {
         public bool? InDesigner { get; set; }
 

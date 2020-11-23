@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace CodingSeb.Converters
 {
@@ -10,10 +11,19 @@ namespace CodingSeb.Converters
     /// </summary>
     public class DoubleAddValueConverter : BaseConverter, IValueConverter
     {
+        public DoubleAddValueConverter()
+        {}
+
+        public DoubleAddValueConverter(double add)
+        {
+            Add = add;
+        }
+
         /// <summary>
         /// The value to add
         /// By default : 0d
         /// </summary>
+        [ConstructorArgument("add")]
         public double Add { get; set; }
 
         /// <summary>

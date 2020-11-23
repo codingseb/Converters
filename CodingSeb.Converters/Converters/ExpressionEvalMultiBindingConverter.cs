@@ -14,6 +14,20 @@ namespace CodingSeb.Converters
     [ContentProperty(nameof(Expression))]
     public class ExpressionEvalMultiBindingConverter : BaseConverter, IMultiValueConverter
     {
+        public ExpressionEvalMultiBindingConverter()
+        { }
+
+        public ExpressionEvalMultiBindingConverter(string expression)
+        {
+            Expression = expression;
+        }
+
+        public ExpressionEvalMultiBindingConverter(string expression, bool optionCaseSensitiveEvaluationActive)
+        {
+            Expression = expression;
+            OptionCaseSensitiveEvaluationActive = optionCaseSensitiveEvaluationActive;
+        }
+
         /// <summary>
         /// To specify a list of namespaces separated by the ; character to add as usings for the evaluator
         /// </summary>
@@ -22,6 +36,7 @@ namespace CodingSeb.Converters
         /// <summary>
         /// The expression to evaluate to make the conversion. Use <c>bindings</c>  as an array of object to inject bindings values in the expression. By default just <c>bindings</c>
         /// </summary>
+        [ConstructorArgument("expression")]
         public string Expression { get; set; } = "bindings";
 
         /// <summary>
@@ -50,6 +65,7 @@ namespace CodingSeb.Converters
         /// if true all evaluation are case sensitives, if false evaluations are case insensitive.
         /// By default = true
         /// </summary>
+        [ConstructorArgument("optionCaseSensitiveEvaluationActive")]
         public bool OptionCaseSensitiveEvaluationActive { get; set; } = true;
 
         /// <summary>
