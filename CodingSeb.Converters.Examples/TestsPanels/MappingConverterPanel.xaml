@@ -20,6 +20,8 @@
                 </Binding>
             </TextBlock.Text>
         </TextBlock>
+        <TextBlock Text="{Binding SelectedItem, ElementName=MappingListBox ,
+            Converter={MappingConverter {Mapping Hello, Bye}, {Mapping Test, ItWorks}, DefaultValue=WhatElse}}" />
         <ListBox x:Name="MappingListBox">
             <sys:String>Hello</sys:String>
             <sys:String>Test</sys:String>

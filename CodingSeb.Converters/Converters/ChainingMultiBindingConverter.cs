@@ -66,6 +66,20 @@ namespace CodingSeb.Converters
         public IValueConverter Converter2 { get; set; }
 
         /// <summary>
+        /// This converter if definded is execute on each binding of the MultiBinding before executing the MultiValueConverter1
+        /// </summary>
+        public IValueConverter ForEachBindingPreConverter { get; set; }
+
+        /// <summary>
+        /// The eventual parameter to give to the ForEachBindingPreConverter
+        /// </summary>
+        public object ForEachBindingPreConverterParameter { get; set; }
+        /// <summary>
+        /// The eventual CultureInfo to give to the ForEachBindingPreConverter
+        /// </summary>
+        public CultureInfo ForEachBindingPreConverterCultureInfo { get; set; }
+
+        /// <summary>
         /// For a list of converters to chain (Use as content Property, Converter1 and Converter2 must be null)
         /// </summary>
         public Collection<IValueConverter> Converters { get; } = new Collection<IValueConverter>();
@@ -77,7 +91,13 @@ namespace CodingSeb.Converters
             if (Converter2 != null)
                 converters.Insert(0, Converter2);
 
-            object value = MultiValueConverter1.Convert(values, targetType, parameter, culture);
+            object value = MultiValueConverter1
+                .Convert(ForEachBindingPreConverter != null
+                        ? values.Select(v => ForEachBindingPreConverter.Convert(v, null, ForEachBindingPreConverterParameter, ForEachBindingPreConverterCultureInfo)).ToArray()
+                        : values,
+                    targetType,
+                    parameter,
+                    culture);
 
             foreach (var converter in converters)
             {
@@ -113,7 +133,9 @@ namespace CodingSeb.Converters
                 value = converter.ConvertBack(value, targetTypes[0], parameter, culture);
             }
 
-            return MultiValueConverter1.ConvertBack(value, targetTypes, parameter, culture);
+            return ForEachBindingPreConverter != null
+                ? MultiValueConverter1.ConvertBack(value, targetTypes, parameter, culture).Select(v => ForEachBindingPreConverter.ConvertBack(v, null, ForEachBindingPreConverterParameter, ForEachBindingPreConverterCultureInfo)).ToArray()
+                : MultiValueConverter1.ConvertBack(value, targetTypes, parameter, culture);
         }
     }
 }
