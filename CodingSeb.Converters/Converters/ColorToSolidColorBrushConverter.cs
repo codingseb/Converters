@@ -12,19 +12,18 @@ namespace CodingSeb.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is Color)
+            if (value is Color color)
             {
-                SolidColorBrush brush = new SolidColorBrush((Color)value);
-                return brush;
+                return new SolidColorBrush(color);
             }
             return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is SolidColorBrush)
+            if (value is SolidColorBrush brush)
             {
-                return (value as SolidColorBrush).Color;
+                return brush.Color;
             }
             return null;
         }

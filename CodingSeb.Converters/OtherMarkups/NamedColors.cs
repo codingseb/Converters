@@ -17,7 +17,7 @@ namespace CodingSeb.Converters
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             return typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
-                .ToList().ConvertAll<NamedColor>(propertyInfo => new NamedColor(propertyInfo.Name, (Color)propertyInfo.GetValue(null)));
+                .ToList().ConvertAll(propertyInfo => new NamedColor(propertyInfo.Name, (Color)propertyInfo.GetValue(null)));
         }
     }
 }

@@ -10,19 +10,30 @@ namespace CodingSeb.Converters
     /// <summary>
     /// This converter Make a sting format on the binding.
     /// </summary>
-    [ContentProperty("Format")]
     public class StringFormatMultiBindingConverter : BaseConverter, IMultiValueConverter
     {
+        public StringFormatMultiBindingConverter()
+        { }
+
+        public StringFormatMultiBindingConverter(string format)
+        {
+            Format = format;
+        }
+
         public string InDesigner { get; set; }
 
         /// <summary>
         /// The Format to use. By default = null --> Use as "{0}{1}{2}..." (Just cast all binding)
         /// </summary>
+        [ConstructorArgument("format")]
         public string Format { get; set; }
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner;
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+            {
+                return InDesigner;
+            }
 
             string format = Format;
 
@@ -36,12 +47,9 @@ namespace CodingSeb.Converters
                 }
             }
 
-            return string.Format(format, values);
+            return string.Format(format.EscapeForXaml(), values);
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

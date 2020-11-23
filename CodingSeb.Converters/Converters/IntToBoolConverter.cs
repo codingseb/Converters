@@ -26,7 +26,7 @@ namespace CodingSeb.Converters
     /// </para>
     /// <para>
     /// CustomRules use the following syntax "True=ValuesDefinition;False=ValuesDefinition" (CaseInsensitive)
-    /// ValuesDefinition can be : 
+    /// ValuesDefinition can be :
     /// <list type="bullet" >
     ///     <item>A simple integer like True=10 or False=-20</item>
     ///     <item>A Range [BiggerThan; SmallerThan] like True=[-5;5] true or True=[-5;] or False=[,5]</item>
@@ -71,7 +71,7 @@ namespace CodingSeb.Converters
         /// <summary>
         /// To define complex rules to dermine the boolean value
         /// CustomRules use the following syntax "True=ValuesDefinition;False=ValuesDefinition" (CaseInsensitive)
-        /// ValuesDefinition can be : 
+        /// ValuesDefinition can be :
         /// <list type="bullet" >
         ///     <item>A simple integer like True=10 or False=-20</item>
         ///     <item>A Range [BiggerThanOrEquals; SmallerThanOrEquals] like True=[-5;5] true or True=[-5;] or False=[,5]</item>
@@ -80,7 +80,7 @@ namespace CodingSeb.Converters
         /// </summary>
         public string CustomRules { get; set; }
 
-        private CustomRulesTester rulesTester = null;
+        private CustomRulesTester rulesTester;
 
         /// <summary>
         /// If no other rule match or is defined the DefaultValue is returned (default value of DefaultValue = false)
@@ -96,19 +96,34 @@ namespace CodingSeb.Converters
         {
             try
             {
-                if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner;
+                if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+                {
+                    return InDesigner;
+                }
                 else if (FalseValue != null && (int)value == FalseValue)
+                {
                     return false;
+                }
                 else if (TrueValue != null && (int)value == TrueValue)
+                {
                     return true;
+                }
                 else if (SmallerThanFalseValue != null && (int)value < SmallerThanFalseValue)
+                {
                     return false;
+                }
                 else if (SmallerThanTrueValue != null && (int)value < SmallerThanTrueValue)
+                {
                     return true;
+                }
                 else if (BiggerThanFalseValue != null && (int)value > BiggerThanFalseValue)
+                {
                     return false;
+                }
                 else if (BiggerThanTrueValue != null && (int)value > BiggerThanTrueValue)
+                {
                     return true;
+                }
                 else if (CustomRules != null)
                 {
                     if (rulesTester == null)
@@ -116,21 +131,20 @@ namespace CodingSeb.Converters
                         rulesTester = new CustomRulesTester(CustomRules);
                     }
 
-                    return rulesTester.Convert((int)value).GetValueOrDefault(DefaultValue);
+                    return rulesTester.Convert((int)value) ?? DefaultValue;
                 }
                 else
+                {
                     return DefaultValue;
+                }
             }
             catch (CustomRuleSyntaxException)
             {
                 throw;
             }
-            catch
+            catch when (UseDefaultValueOnException)
             {
-                if (UseDefaultValueOnException)
-                    return DefaultValue;
-                else
-                    throw;
+                return DefaultValue;
             }
         }
 
@@ -145,23 +159,27 @@ namespace CodingSeb.Converters
         public CustomRuleSyntaxException(string message) : base(message)
         {
         }
+
+        public CustomRuleSyntaxException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 
     internal class CustomRulesTester
     {
-        private Regex trueAndFalseSplitterRegex = new Regex(@"(?<bool>true|false)[=](?<definitions>(([^;\r\n]|[;](?!t|f)))*)", RegexOptions.IgnoreCase);
-        private Regex discontinuousRegex = new Regex(@"^[{](?<values>(\s*([-]?\d+|\[\s*[-]?\d*\s*[;]\s*[-]?\d*\s*\])\s*)([;](\s*([-]?\d+|\[\s*[-]?\d*\s*[;]\s*[-]?\d*\s*\])\s*))*)[}]$");
-        private Regex discontinuousValues = new Regex(@"(?<=(^|[;])\s*)(\[[^\]]+\]|[-]?\d+)(?=\s*[;]|$)");
-        private Regex rangesRegex = new Regex(@"^\[\s*(?<biggerThan>[-]?\d+)?\s*[;]\s*(?<smallerThan>[-]?\d+)?\s*\]$");
+        private readonly Regex trueAndFalseSplitterRegex = new Regex(@"(?<bool>true|false)[=](?<definitions>(([^;\r\n]|[;](?!t|f)))*)", RegexOptions.IgnoreCase);
+        private readonly Regex discontinuousRegex = new Regex(@"^[{](?<values>(\s*([-]?\d+|\[\s*[-]?\d*\s*[;]\s*[-]?\d*\s*\])\s*)([;](\s*([-]?\d+|\[\s*[-]?\d*\s*[;]\s*[-]?\d*\s*\])\s*))*)[}]$");
+        private readonly Regex discontinuousValues = new Regex(@"(?<=(^|[;])\s*)(\[[^\]]+\]|[-]?\d+)(?=\s*[;]|$)");
+        private readonly Regex rangesRegex = new Regex(@"^\[\s*(?<biggerThan>[-]?\d+)?\s*[;]\s*(?<smallerThan>[-]?\d+)?\s*\]$");
 
-        private List<ICustomRule> customRules = new List<ICustomRule>();
+        private readonly List<ICustomRule> customRules = new List<ICustomRule>();
 
         public CustomRulesTester(string customRule)
         {
             trueAndFalseSplitterRegex.Matches(customRule).Cast<Match>().ToList()
-                .ForEach(delegate (Match match)
+                .ForEach(match =>
                 {
-                    bool bValue = match.Groups["bool"].Value.ToLower().Equals("true");
+                    bool bValue = match.Groups["bool"].Value.Equals("true", StringComparison.OrdinalIgnoreCase);
 
                     string definitions = match.Groups["definitions"].Value.Trim();
 
@@ -211,10 +229,14 @@ namespace CodingSeb.Converters
                     int? smallerThan = null;
 
                     if (biggerThanGroup.Success)
+                    {
                         biggerThan = int.Parse(biggerThanGroup.Value);
+                    }
 
                     if (smallerThanGroup.Success)
+                    {
                         smallerThan = int.Parse(smallerThanGroup.Value);
+                    }
 
                     customRules.Add(new RangeIntValueToBoolRule(biggerThan, smallerThan, boolValue));
 
@@ -233,9 +255,7 @@ namespace CodingSeb.Converters
 
         private bool DefineSimple(string definition, bool boolValue)
         {
-            int value = 0;
-
-            if (int.TryParse(definition, out value))
+            if (int.TryParse(definition, out int value))
             {
                 customRules.Add(new SimpleIntValueToBoolRule(value, boolValue));
 

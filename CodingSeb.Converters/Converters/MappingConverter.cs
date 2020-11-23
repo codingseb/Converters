@@ -31,12 +31,12 @@ namespace CodingSeb.Converters
     /// ]]>
     /// </code>
     /// </example>
-
-    [ContentProperty("Mappings")]
+    [ContentProperty(nameof(Mappings))]
+    [ContentWrapper(typeof(Mapping))]
     [ValueConversion(typeof(object), typeof(object))]
     public class MappingConverter : BaseConverter, IValueConverter
     {
-        public Collection<Mapping> Mappings { get; set; } = new Collection<Mapping>();
+        public Collection<Mapping> Mappings { get; } = new Collection<Mapping>();
 
         public object DefaultValue { get; set; } = DependencyProperty.UnsetValue;
         public object DefaultValueForConvertBack { get; set; } = DependencyProperty.UnsetValue;
@@ -45,7 +45,7 @@ namespace CodingSeb.Converters
         {
             try
             {
-                return (new List<Mapping>(Mappings)).Find(m => m.Key.Equals(value))?.Value ?? DefaultValue;
+                return new List<Mapping>(Mappings).Find(m => m.Key.Equals(value))?.Value ?? DefaultValue;
             }
             catch
             {
@@ -57,7 +57,7 @@ namespace CodingSeb.Converters
         {
             try
             {
-                return (new List<Mapping>(Mappings)).Find(m => m.Value.Equals(value))?.Key ?? DefaultValueForConvertBack;
+                return new List<Mapping>(Mappings).Find(m => m.Value.Equals(value))?.Key ?? DefaultValueForConvertBack;
             }
             catch
             {

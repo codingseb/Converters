@@ -8,24 +8,47 @@ namespace CodingSeb.Converters
     /// <summary>
     /// This converter check if the binding type correspond to the specified condition.
     /// </summary>
-    public class TypeCheckingConverter : MarkupExtension, IValueConverter
+    public class TypeCheckingConverter : BaseConverter, IValueConverter
     {
-        /// <summary>
-        /// Set to true to specify that the binding is the type to test. Set to false to specify that the binding is an instance of the type to test.
-        /// By default : false
-        /// </summary>
-        public bool IsAType { get; set; }
+        public TypeCheckingConverter()
+        {}
+        public TypeCheckingConverter(Type typeToCheck)
+        {
+            TypeToCheck = typeToCheck;
+        }
+
+        public TypeCheckingConverter(Type typeToCheck, TypeCheckingConverterCondition typeCheckingConverterCondition)
+        {
+            TypeToCheck = typeToCheck;
+            TypeCheckingConverterCondition = typeCheckingConverterCondition;
+        }
+
+        public TypeCheckingConverter(Type typeToCheck, TypeCheckingConverterCondition typeCheckingConverterCondition, bool isAType)
+        {
+            TypeToCheck = typeToCheck;
+            TypeCheckingConverterCondition = typeCheckingConverterCondition;
+            IsAType = isAType;
+        }
 
         /// <summary>
         /// Type to Check with the Condition
         /// </summary>
+        [ConstructorArgument("typeToCheck")]
         public Type TypeToCheck { get; set; }
 
         /// <summary>
         /// The condition to use to evaluate the type
         /// Default Value Is
         /// </summary>
+        [ConstructorArgument("typeCheckingConverterCondition")]
         public TypeCheckingConverterCondition TypeCheckingConverterCondition { get; set; }
+
+        /// <summary>
+        /// Set to true to specify that the binding is the type to test. Set to false to specify that the binding is an instance of the type to test.
+        /// By default : false
+        /// </summary>
+        [ConstructorArgument("isAType")]
+        public bool IsAType { get; set; }
 
         /// <summary>
         /// The default value to return if the type is not checkable (binding is null or unset)
@@ -76,14 +99,6 @@ namespace CodingSeb.Converters
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

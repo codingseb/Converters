@@ -12,7 +12,8 @@ namespace CodingSeb.Converters
     /// It can also chain an other ChainingConverter or two.
     /// Or it can take a list of converters to chain as Content of the converter
     /// </summary>
-    [ContentProperty("Converters")]
+    [ContentProperty(nameof(Converters))]
+    [ContentWrapper(typeof(IValueConverter))]
     public class ChainingConverter : BaseConverter, IValueConverter
     {
         /// <summary>
@@ -41,8 +42,15 @@ namespace CodingSeb.Converters
                 foreach (var converter in Converters)
                 {
                     value = converter.Convert(value, targetType, parameter, culture);
-                    if (value == Binding.DoNothing) return Binding.DoNothing;
-                    if (value == DependencyProperty.UnsetValue) return DependencyProperty.UnsetValue;
+                    if (value == Binding.DoNothing)
+                    {
+                        return Binding.DoNothing;
+                    }
+
+                    if (value == DependencyProperty.UnsetValue)
+                    {
+                        return DependencyProperty.UnsetValue;
+                    }
                 }
 
                 return value;
@@ -67,8 +75,15 @@ namespace CodingSeb.Converters
                 foreach (var converter in convertersReverseList)
                 {
                     value = converter.ConvertBack(value, targetType, parameter, culture);
-                    if (value == Binding.DoNothing) return Binding.DoNothing;
-                    if (value == DependencyProperty.UnsetValue) return DependencyProperty.UnsetValue;
+                    if (value == Binding.DoNothing)
+                    {
+                        return Binding.DoNothing;
+                    }
+
+                    if (value == DependencyProperty.UnsetValue)
+                    {
+                        return DependencyProperty.UnsetValue;
+                    }
                 }
 
                 return value;

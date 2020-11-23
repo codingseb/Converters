@@ -13,7 +13,7 @@ namespace CodingSeb.Converters.Tests
 
         public override bool Equals(object obj)
         {
-            return obj is ClassToTestBoolToObjectConverter1 classToTestBoolToObjectConverter1 && Attribute1.Equals((classToTestBoolToObjectConverter1).Attribute1);
+            return obj is ClassToTestBoolToObjectConverter1 classToTestBoolToObjectConverter1 && Attribute1.Equals(classToTestBoolToObjectConverter1.Attribute1);
         }
 
         public override int GetHashCode()
@@ -28,7 +28,7 @@ namespace CodingSeb.Converters.Tests
 
         public override bool Equals(object obj)
         {
-            return obj is ClassToTestBoolToObjectConverter2 classToTestBoolToObjectConverter2 && Attribute2.Equals((classToTestBoolToObjectConverter2).Attribute2);
+            return obj is ClassToTestBoolToObjectConverter2 classToTestBoolToObjectConverter2 && Attribute2.Equals(classToTestBoolToObjectConverter2.Attribute2);
         }
 
         public override int GetHashCode()
@@ -43,7 +43,7 @@ namespace CodingSeb.Converters.Tests
 
         public override bool Equals(object obj)
         {
-            return obj is ClassToTestBoolToObjectConverter3 classToTestBoolToObjectConverter3 && Attribute3.Equals((classToTestBoolToObjectConverter3).Attribute3);
+            return obj is ClassToTestBoolToObjectConverter3 classToTestBoolToObjectConverter3 && Attribute3.Equals(classToTestBoolToObjectConverter3.Attribute3);
         }
 
         public override int GetHashCode()

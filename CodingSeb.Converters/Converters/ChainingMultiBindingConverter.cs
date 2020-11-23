@@ -12,7 +12,8 @@ namespace CodingSeb.Converters
     /// It can also chain an ChainingConverter as Converter2.
     /// Or it can take a list of IValueConverter to chain as Content of the converter. (The IMultiValueConverter is always provide by the MultiValueConverter1)
     /// </summary>
-    [ContentProperty("Converters")]
+    [ContentProperty(nameof(Converters))]
+    [ContentWrapper(typeof(IValueConverter))]
     public class ChainingMultiBindingConverter : BaseConverter, IMultiValueConverter
     {
         /// <summary>
@@ -39,8 +40,15 @@ namespace CodingSeb.Converters
                 foreach (var converter in Converters)
                 {
                     value = converter.Convert(value, targetType, parameter, culture);
-                    if (value == Binding.DoNothing) return Binding.DoNothing;
-                    if (value == DependencyProperty.UnsetValue) return DependencyProperty.UnsetValue;
+                    if (value == Binding.DoNothing)
+                    {
+                        return Binding.DoNothing;
+                    }
+
+                    if (value == DependencyProperty.UnsetValue)
+                    {
+                        return DependencyProperty.UnsetValue;
+                    }
                 }
 
                 return value;

@@ -13,17 +13,17 @@ namespace CodingSeb.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is Array)
+            if (value is Array array)
             {
-                return ((Array)value).Length;
+                return array.Length;
             }
-            else if (value is ICollection)
+            else if (value is ICollection collection)
             {
-                return ((ICollection)value).Count;
+                return collection.Count;
             }
-            else if (value is IEnumerable)
+            else if (value is IEnumerable enumerable)
             {
-                return ((IEnumerable)value).Cast<dynamic>().ToList().Count;
+                return enumerable.Cast<dynamic>().ToList().Count;
             }
             else
             {
@@ -31,9 +31,6 @@ namespace CodingSeb.Converters
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

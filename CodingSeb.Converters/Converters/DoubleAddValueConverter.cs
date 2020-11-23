@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Markup;
 
 namespace CodingSeb.Converters
 {
     /// <summary>
-    /// This Converter return the value value of the binding + the value in Add Property and/or in parameter.
+    /// This Converter return the value of the binding + the value in Add Property and/or in parameter.
     /// Work with double values
     /// </summary>
     public class DoubleAddValueConverter : BaseConverter, IValueConverter

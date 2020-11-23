@@ -15,21 +15,8 @@ namespace CodingSeb.Converters
     [ValueConversion(typeof(string), typeof(string))]
     public class StringCaseConverter : BaseConverter, IValueConverter
     {
-        private static Regex firstLetterRegex = new Regex("^.");
+        private static readonly Regex firstLetterRegex = new Regex("^.");
         private static Regex firstLetterEachWordRegex = new Regex(@"(?<=^|\s)\w");
-
-        public string InDesigner { get; set; }
-
-        /// <summary>
-        /// The mode of casing to execute on the binding element
-        /// </summary>
-        [ConstructorArgument("casingMode")]
-        public StringCasingMode CasingMode { get; set; }
-
-        /// <summary>
-        /// Some additionnal characters to consider as word boundaries for "each word" casing modes
-        /// </summary>
-        public string CharsToConsiderAsWordBoundary { get; set; } = "";
 
         /// <summary>
         /// Constructor
@@ -46,9 +33,37 @@ namespace CodingSeb.Converters
             CasingMode = casingMode;
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="casingMode">The mode of casing to execute on the binding element</param>
+        /// <param name="charsToConsiderAsWordBoundary">The mode of casing to execute on the binding element</param>
+        public StringCaseConverter(StringCasingMode casingMode, string charsToConsiderAsWordBoundary)
+        {
+            CasingMode = casingMode;
+            CharsToConsiderAsWordBoundary = charsToConsiderAsWordBoundary;
+        }
+
+        public string InDesigner { get; set; }
+
+        /// <summary>
+        /// The mode of casing to execute on the binding element
+        /// </summary>
+        [ConstructorArgument("casingMode")]
+        public StringCasingMode CasingMode { get; set; }
+
+        /// <summary>
+        /// Some additionnal characters to consider as word boundaries for "each word" casing modes
+        /// </summary>
+        [ConstructorArgument("charsToConsiderAsWordBoundary")]
+        public string CharsToConsiderAsWordBoundary { get; set; } = string.Empty;
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner;
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+            {
+                return InDesigner;
+            }
 
             string result = value.ToString();
 
@@ -71,37 +86,24 @@ namespace CodingSeb.Converters
                     result = result.ToUpper();
                     break;
                 case StringCasingMode.Firstletterupper:
-                    result = firstLetterRegex.Replace(result, delegate (Match match)
-                    {
-                        return match.Value.ToUpper();
-                    });
+                    result = firstLetterRegex.Replace(result, match => match.Value.ToUpper());
                     break;
                 case StringCasingMode.firstLetterLower:
-                    result = firstLetterRegex.Replace(result, delegate (Match match)
-                    {
-                        return match.Value.ToLower();
-                    });
+                    result = firstLetterRegex.Replace(result, match => match.Value.ToLower());
                     break;
                 case StringCasingMode.FirstLetterOfEachWordUpper:
-                    result = firstLetterEachWordRegex.Replace(result, delegate (Match match)
-                    {
-                        return match.Value.ToUpper();
-                    });
+                    result = firstLetterEachWordRegex.Replace(result, match => match.Value.ToUpper());
                     break;
                 case StringCasingMode.firstletterofeachwordlower:
-                    result = firstLetterEachWordRegex.Replace(result, delegate (Match match)
-                    {
-                        return match.Value.ToLower();
-                    });
+                    result = firstLetterEachWordRegex.Replace(result, match => match.Value.ToLower());
+                    break;
+                case StringCasingMode.Normal:
                     break;
             }
 
             return result;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value;
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => value;
     }
 }

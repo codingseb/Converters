@@ -11,7 +11,7 @@ namespace CodingSeb.Converters
     /// Converter that use a string mathematical or pseudo C# expression to make the conversion.
     /// Use <c>binding</c> to inject the binding value in the expression (example <c>Abs(binding) + 1</c>)
     /// </summary>
-    [ContentProperty("Expression")]
+    [ContentProperty(nameof(Expression))]
     public class ExpressionEvalConverter : BaseConverter, IValueConverter
     {
         /// <summary>

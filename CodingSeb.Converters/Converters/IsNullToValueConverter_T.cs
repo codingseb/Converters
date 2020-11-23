@@ -21,20 +21,25 @@ namespace CodingSeb.Converters
         public T IsNullValue { get; set; }
 
         /// <summary>
-        /// The value if the dependencyproperty is not null 
+        /// The value if the dependencyproperty is not null
         /// </summary>
         public T IsNotNullValue { get; set; }
 
         #region IValueConverter Membres
 
-        public virtual object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner;
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+            {
+                return InDesigner;
+            }
             else
+            {
                 return value == null ? IsNullValue : IsNotNullValue;
+            }
         }
 
-        public virtual object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public virtual object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
         }
@@ -46,9 +51,14 @@ namespace CodingSeb.Converters
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner;
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+            {
+                return InDesigner;
+            }
             else
+            {
                 return value == null ? IsNullValue.EscapeForXaml() : IsNotNullValue.EscapeForXaml();
+            }
         }
     }
     public class IsNullToObjectConverter : IsNullToValueConverters<object> { }

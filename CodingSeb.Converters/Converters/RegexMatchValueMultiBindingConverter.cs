@@ -24,16 +24,18 @@ namespace CodingSeb.Converters
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner;
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+            {
+                return InDesigner;
+            }
             else
+            {
                 return Regex.Match(values[0].ToString()
                     , values[1].ToString()
                     , values.Length >= 3 ? (RegexOptions)values[2] : Options).Value;
+            }
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

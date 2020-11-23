@@ -11,7 +11,7 @@ namespace CodingSeb.Converters
     /// MultiBinding Converter that use a string mathematical or pseudo C# expression to make the conversion.
     /// Use <c>bindings</c> as an array of object to inject bindings values in the expression (example <c>Abs(bindings[0]) + bindings[1]</c>)
     /// </summary>
-    [ContentProperty("Expression")]
+    [ContentProperty(nameof(Expression))]
     public class ExpressionEvalMultiBindingConverter : BaseConverter, IMultiValueConverter
     {
         /// <summary>

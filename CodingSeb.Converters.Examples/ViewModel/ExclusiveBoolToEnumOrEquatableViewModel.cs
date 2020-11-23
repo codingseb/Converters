@@ -29,7 +29,7 @@ namespace CodingSeb.Converters.Examples
             }
         }
 
-        private Visibility visibilityValue = Visibility.Visible;
+        private Visibility visibilityValue;
         public Visibility VisibilityValue
         {
             get { return visibilityValue; }

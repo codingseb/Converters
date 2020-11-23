@@ -13,7 +13,7 @@ namespace CodingSeb.Converters.Tests
         {
             CustomBoolToVisibilityConverter converter = new CustomBoolToVisibilityConverter();
 
-            converter.Convert(true, typeof(Visibility), null, null).ShouldBe<object>(Visibility.Visible);
+            converter.Convert(true, typeof(Visibility), null, null).ShouldBe(Visibility.Visible);
         }
 
         [Category("Convert")]
@@ -22,7 +22,7 @@ namespace CodingSeb.Converters.Tests
         {
             CustomBoolToVisibilityConverter converter = new CustomBoolToVisibilityConverter();
 
-            converter.Convert(false, typeof(Visibility), null, null).ShouldBe<object>(Visibility.Collapsed);
+            converter.Convert(false, typeof(Visibility), null, null).ShouldBe(Visibility.Collapsed);
         }
 
         [Category("Convert")]
@@ -34,7 +34,7 @@ namespace CodingSeb.Converters.Tests
                 TrueValue = Visibility.Collapsed,
                 FalseValue = Visibility.Visible
             };
-            converter.Convert(true, typeof(Visibility), null, null).ShouldBe<object>(Visibility.Collapsed);
+            converter.Convert(true, typeof(Visibility), null, null).ShouldBe(Visibility.Collapsed);
         }
 
         [Category("Convert")]
@@ -46,7 +46,7 @@ namespace CodingSeb.Converters.Tests
                 TrueValue = Visibility.Hidden,
                 FalseValue = Visibility.Visible
             };
-            converter.Convert(true, typeof(Visibility), null, null).ShouldBe<object>(Visibility.Hidden);
+            converter.Convert(true, typeof(Visibility), null, null).ShouldBe(Visibility.Hidden);
         }
 
         [Category("Convert")]
@@ -58,7 +58,7 @@ namespace CodingSeb.Converters.Tests
                 TrueValue = Visibility.Collapsed,
                 FalseValue = Visibility.Visible
             };
-            converter.Convert(false, typeof(Visibility), null, null).ShouldBe<object>(Visibility.Visible);
+            converter.Convert(false, typeof(Visibility), null, null).ShouldBe(Visibility.Visible);
         }
 
         [Category("Convert")]
@@ -69,7 +69,7 @@ namespace CodingSeb.Converters.Tests
             {
                 FalseValue = Visibility.Hidden
             };
-            converter.Convert(false, typeof(Visibility), null, null).ShouldBe<object>(Visibility.Hidden);
+            converter.Convert(false, typeof(Visibility), null, null).ShouldBe(Visibility.Hidden);
         }
 
         [Category("ConvertBack")]

@@ -20,9 +20,14 @@ namespace CodingSeb.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner.Value;
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+            {
+                return InDesigner.Value;
+            }
             else
+            {
                 return value != null;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

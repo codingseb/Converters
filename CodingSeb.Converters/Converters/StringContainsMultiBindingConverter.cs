@@ -21,7 +21,7 @@ namespace CodingSeb.Converters
 
             if (values.Length >= 3 && (bool)values[2])
             {
-                return values[0].ToString().ToLower().Contains(values[1].ToString().ToLower());
+                return values[0].ToString().Contains(values[1].ToString(), StringComparison.OrdinalIgnoreCase);
             }
             else
             {

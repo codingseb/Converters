@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace CodingSeb.Converters
 {
@@ -11,9 +12,18 @@ namespace CodingSeb.Converters
     /// </summary>
     public class StringNullOrEmptyToDefaultValueConverter : BaseConverter, IValueConverter
     {
+        public StringNullOrEmptyToDefaultValueConverter()
+        {}
+
+        public StringNullOrEmptyToDefaultValueConverter(string defaultValue)
+        {
+            DefaultValue = defaultValue;
+        }
+
         /// <summary>
         /// The Default value to return when the given string value is null or empty
         /// </summary>
+        [ConstructorArgument("defaultValue")]
         public string DefaultValue { get; set; }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

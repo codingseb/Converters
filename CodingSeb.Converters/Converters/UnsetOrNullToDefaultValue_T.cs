@@ -24,13 +24,22 @@ namespace CodingSeb.Converters
 
         public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner;
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+            {
+                return InDesigner;
+            }
             else if (value == DependencyProperty.UnsetValue)
+            {
                 return OnUnsetValue;
+            }
             else if (value == null)
+            {
                 return OnNullValue;
+            }
             else
+            {
                 return value;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -44,13 +53,22 @@ namespace CodingSeb.Converters
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner;
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+            {
+                return InDesigner;
+            }
             else if (value == DependencyProperty.UnsetValue)
+            {
                 return OnUnsetValue.EscapeForXaml();
+            }
             else if (value == null)
+            {
                 return OnNullValue.EscapeForXaml();
+            }
             else
+            {
                 return value;
+            }
         }
     };
     public class UnsetOrNullToObjectalue : UnsetOrNullToDefaultValue<object> { };

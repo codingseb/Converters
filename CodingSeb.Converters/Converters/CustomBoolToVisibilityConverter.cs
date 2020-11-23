@@ -40,16 +40,25 @@ namespace CodingSeb.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner;
-            else if (value == null) return OnNullValue;
-            else if (value == DependencyProperty.UnsetValue) return OnUnsetValue;
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+            {
+                return InDesigner;
+            }
+            else if (value == null)
+            {
+                return OnNullValue;
+            }
+            else if (value == DependencyProperty.UnsetValue)
+            {
+                return OnUnsetValue;
+            }
 
-            return (value is bool && (bool)value ? TrueValue : FalseValue);
+            return value is bool x && x ? TrueValue : FalseValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (value is Visibility && (Visibility)value == TrueValue);
+            return value is Visibility visibility && visibility == TrueValue;
         }
     }
 }

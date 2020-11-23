@@ -33,7 +33,7 @@ namespace CodingSeb.Converters
         public T FalseValue { get; set; }
 
         /// <summary>
-        /// La valeur à laquelle convertir false 
+        /// La valeur à laquelle convertir false
         /// </summary>
         public T TrueValue { get; set; }
 
@@ -55,12 +55,23 @@ namespace CodingSeb.Converters
         {
             bool bValue = OnReverseNullValue;
 
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner;
-            else if (value == null) return OnNullValue;
-            else if (value == DependencyProperty.UnsetValue) return OnUnsetValue;
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+            {
+                return InDesigner;
+            }
+            else if (value == null)
+            {
+                return OnNullValue;
+            }
+            else if (value == DependencyProperty.UnsetValue)
+            {
+                return OnUnsetValue;
+            }
 
             if (value != null)
+            {
                 bValue = (bool)value;
+            }
 
             return bValue ? TrueValue : FalseValue;
         }
@@ -72,11 +83,17 @@ namespace CodingSeb.Converters
             if (value != null)
             {
                 if (value.Equals(TrueValue))
+                {
                     result = true;
+                }
                 else if (value.Equals(FalseValue))
+                {
                     result = false;
+                }
                 else
+                {
                     result = OnReverseOtherValue;
+                }
             }
 
             return result;
@@ -85,9 +102,9 @@ namespace CodingSeb.Converters
         #endregion
     }
 
-    public class BoolToStringConverter : BoolToValuesGenericConverter<String> { }
+    public class BoolToStringConverter : BoolToValuesGenericConverter<string> { }
     public class BoolToBrushConverter : BoolToValuesGenericConverter<Brush> { }
-    public class BoolToObjectConverter : BoolToValuesGenericConverter<Object> { }
+    public class BoolToObjectConverter : BoolToValuesGenericConverter<object> { }
 
     /// <summary>
     /// To Show 2 differents static resources BitmapImage in case corresponding to a true or false value
@@ -100,12 +117,18 @@ namespace CodingSeb.Converters
 
             if (value != null)
             {
-                if (value is BitmapImage && ((BitmapImage)value).IsEqual(TrueValue))
+                if (value is BitmapImage bitmapImage && bitmapImage.IsEqual(TrueValue))
+                {
                     result = true;
-                else if (value is BitmapImage && ((BitmapImage)value).IsEqual(FalseValue))
+                }
+                else if (value is BitmapImage bitmapImage2 && bitmapImage2.IsEqual(FalseValue))
+                {
                     result = false;
+                }
                 else
+                {
                     result = OnReverseOtherValue;
+                }
             }
 
             return result;

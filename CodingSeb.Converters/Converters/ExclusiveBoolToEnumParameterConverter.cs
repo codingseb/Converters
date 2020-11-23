@@ -24,10 +24,14 @@ namespace CodingSeb.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool && (bool)value)
+            if (value is bool x && x)
+            {
                 return parameter;
+            }
             else
+            {
                 return DependencyProperty.UnsetValue;
+            }
         }
     }
 }

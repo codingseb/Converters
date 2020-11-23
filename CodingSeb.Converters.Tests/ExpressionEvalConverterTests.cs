@@ -368,29 +368,29 @@ namespace CodingSeb.Converters.Tests
 
                 Expression = "binding + 1"
             };
-            (converter.Convert(-60, null, null, null)).ShouldBe(-59);
-            (converter.Convert(-1, null, null, null)).ShouldBe(0);
-            (converter.Convert(1, null, null, null)).ShouldBe(2);
-            (converter.Convert(3, null, null, null)).ShouldBe(4);
-            (converter.Convert(10, null, null, null)).ShouldBe(11);
+            converter.Convert(-60, null, null, null).ShouldBe(-59);
+            converter.Convert(-1, null, null, null).ShouldBe(0);
+            converter.Convert(1, null, null, null).ShouldBe(2);
+            converter.Convert(3, null, null, null).ShouldBe(4);
+            converter.Convert(10, null, null, null).ShouldBe(11);
 
             converter.Expression = "binding + 30";
 
-            (converter.Convert(-60, null, null, null)).ShouldBe(-30);
-            (converter.Convert(-1, null, null, null)).ShouldBe(29);
-            (converter.Convert(1, null, null, null)).ShouldBe(31);
-            (converter.Convert(3, null, null, null)).ShouldBe(33);
-            (converter.Convert(10, null, null, null)).ShouldBe(40);
+            converter.Convert(-60, null, null, null).ShouldBe(-30);
+            converter.Convert(-1, null, null, null).ShouldBe(29);
+            converter.Convert(1, null, null, null).ShouldBe(31);
+            converter.Convert(3, null, null, null).ShouldBe(33);
+            converter.Convert(10, null, null, null).ShouldBe(40);
 
             converter.Expression = "binding + -10";
 
-            (converter.Convert(-60, null, null, null)).ShouldBe(-70);
-            (converter.Convert(-1, null, null, null)).ShouldBe(-11);
-            (converter.Convert(1, null, null, null)).ShouldBe(-9);
-            (converter.Convert(3, null, null, null)).ShouldBe(-7);
-            (converter.Convert(10, null, null, null)).ShouldBe(0);
-            (converter.Convert(20, null, null, null)).ShouldBe(10);
-            (converter.Convert(100, null, null, null)).ShouldBe(90);
+            converter.Convert(-60, null, null, null).ShouldBe(-70);
+            converter.Convert(-1, null, null, null).ShouldBe(-11);
+            converter.Convert(1, null, null, null).ShouldBe(-9);
+            converter.Convert(3, null, null, null).ShouldBe(-7);
+            converter.Convert(10, null, null, null).ShouldBe(0);
+            converter.Convert(20, null, null, null).ShouldBe(10);
+            converter.Convert(100, null, null, null).ShouldBe(90);
         }
 
         [Test]
@@ -402,27 +402,27 @@ namespace CodingSeb.Converters.Tests
 
                 Expression = "binding - 1"
             };
-            (converter.Convert(-60, null, null, null)).ShouldBe(-61);
-            (converter.Convert(-1, null, null, null)).ShouldBe(-2);
-            (converter.Convert(1, null, null, null)).ShouldBe(0);
-            (converter.Convert(3, null, null, null)).ShouldBe(2);
-            (converter.Convert(10, null, null, null)).ShouldBe(9);
+            converter.Convert(-60, null, null, null).ShouldBe(-61);
+            converter.Convert(-1, null, null, null).ShouldBe(-2);
+            converter.Convert(1, null, null, null).ShouldBe(0);
+            converter.Convert(3, null, null, null).ShouldBe(2);
+            converter.Convert(10, null, null, null).ShouldBe(9);
 
             converter.Expression = "binding - 30";
 
-            (converter.Convert(-60, null, null, null)).ShouldBe(-90);
-            (converter.Convert(-1, null, null, null)).ShouldBe(-31);
-            (converter.Convert(1, null, null, null)).ShouldBe(-29);
-            (converter.Convert(100, null, null, null)).ShouldBe(70);
-            (converter.Convert(40, null, null, null)).ShouldBe(10);
+            converter.Convert(-60, null, null, null).ShouldBe(-90);
+            converter.Convert(-1, null, null, null).ShouldBe(-31);
+            converter.Convert(1, null, null, null).ShouldBe(-29);
+            converter.Convert(100, null, null, null).ShouldBe(70);
+            converter.Convert(40, null, null, null).ShouldBe(10);
 
             converter.Expression = "binding - -10";
 
-            (converter.Convert(-60, null, null, null)).ShouldBe(-50);
-            (converter.Convert(-1, null, null, null)).ShouldBe(9);
-            (converter.Convert(1, null, null, null)).ShouldBe(11);
-            (converter.Convert(3, null, null, null)).ShouldBe(13);
-            (converter.Convert(10, null, null, null)).ShouldBe(20);
+            converter.Convert(-60, null, null, null).ShouldBe(-50);
+            converter.Convert(-1, null, null, null).ShouldBe(9);
+            converter.Convert(1, null, null, null).ShouldBe(11);
+            converter.Convert(3, null, null, null).ShouldBe(13);
+            converter.Convert(10, null, null, null).ShouldBe(20);
         }
 
         [Test]
@@ -434,29 +434,29 @@ namespace CodingSeb.Converters.Tests
 
                 Expression = "binding * 1"
             };
-            (converter.Convert(-60, null, null, null)).ShouldBe(-60);
-            (converter.Convert(-1, null, null, null)).ShouldBe(-1);
-            (converter.Convert(0, null, null, null)).ShouldBe(0);
-            (converter.Convert(1, null, null, null)).ShouldBe(1);
-            (converter.Convert(10, null, null, null)).ShouldBe(10);
+            converter.Convert(-60, null, null, null).ShouldBe(-60);
+            converter.Convert(-1, null, null, null).ShouldBe(-1);
+            converter.Convert(0, null, null, null).ShouldBe(0);
+            converter.Convert(1, null, null, null).ShouldBe(1);
+            converter.Convert(10, null, null, null).ShouldBe(10);
 
             converter.Expression = "binding * 10";
 
-            (converter.Convert(-60, null, null, null)).ShouldBe(-600);
-            (converter.Convert(-1, null, null, null)).ShouldBe(-10);
-            (converter.Convert(0, null, null, null)).ShouldBe(0);
-            (converter.Convert(5.5, null, null, null)).ShouldBe((double)55);
-            (converter.Convert(10, null, null, null)).ShouldBe(100);
+            converter.Convert(-60, null, null, null).ShouldBe(-600);
+            converter.Convert(-1, null, null, null).ShouldBe(-10);
+            converter.Convert(0, null, null, null).ShouldBe(0);
+            converter.Convert(5.5, null, null, null).ShouldBe((double)55);
+            converter.Convert(10, null, null, null).ShouldBe(100);
 
             converter.Expression = "binding * -10";
 
-            (converter.Convert(-60, null, null, null)).ShouldBe(600);
-            (converter.Convert(-1, null, null, null)).ShouldBe(10);
-            (converter.Convert(0, null, null, null)).ShouldBe(0);
-            (converter.Convert(1, null, null, null)).ShouldBe(-10);
-            (converter.Convert(10, null, null, null)).ShouldBe(-100);
-            (converter.Convert(5.5, null, null, null)).ShouldBe((double)-55);
-            (converter.Convert(-6.12, null, null, null)).ShouldBe(61.2);
+            converter.Convert(-60, null, null, null).ShouldBe(600);
+            converter.Convert(-1, null, null, null).ShouldBe(10);
+            converter.Convert(0, null, null, null).ShouldBe(0);
+            converter.Convert(1, null, null, null).ShouldBe(-10);
+            converter.Convert(10, null, null, null).ShouldBe(-100);
+            converter.Convert(5.5, null, null, null).ShouldBe((double)-55);
+            converter.Convert(-6.12, null, null, null).ShouldBe(61.2);
         }
 
         [Test]
@@ -468,27 +468,27 @@ namespace CodingSeb.Converters.Tests
 
                 Expression = "binding / 1"
             };
-            (converter.Convert(-60, null, null, null)).ShouldBe(-60);
-            (converter.Convert(-1, null, null, null)).ShouldBe(-1);
-            (converter.Convert(0, null, null, null)).ShouldBe(0);
-            (converter.Convert(1, null, null, null)).ShouldBe(1);
-            (converter.Convert(10, null, null, null)).ShouldBe(10);
+            converter.Convert(-60, null, null, null).ShouldBe(-60);
+            converter.Convert(-1, null, null, null).ShouldBe(-1);
+            converter.Convert(0, null, null, null).ShouldBe(0);
+            converter.Convert(1, null, null, null).ShouldBe(1);
+            converter.Convert(10, null, null, null).ShouldBe(10);
 
             converter.Expression = "binding / 10";
 
-            (converter.Convert(-60, null, null, null)).ShouldBe(-6);
-            (converter.Convert(-1d, null, null, null)).ShouldBe(-0.1);
-            (converter.Convert(0, null, null, null)).ShouldBe(0);
-            (converter.Convert(55d, null, null, null)).ShouldBe(5.5);
-            (converter.Convert(10, null, null, null)).ShouldBe(1);
+            converter.Convert(-60, null, null, null).ShouldBe(-6);
+            converter.Convert(-1d, null, null, null).ShouldBe(-0.1);
+            converter.Convert(0, null, null, null).ShouldBe(0);
+            converter.Convert(55d, null, null, null).ShouldBe(5.5);
+            converter.Convert(10, null, null, null).ShouldBe(1);
 
             converter.Expression = "binding / -10";
 
-            (converter.Convert(-60, null, null, null)).ShouldBe(6);
-            (converter.Convert(-1d, null, null, null)).ShouldBe(0.1);
-            (converter.Convert(0, null, null, null)).ShouldBe(0);
-            (converter.Convert(10, null, null, null)).ShouldBe(-1);
-            (converter.Convert(5.5, null, null, null)).ShouldBe(-0.55);
+            converter.Convert(-60, null, null, null).ShouldBe(6);
+            converter.Convert(-1d, null, null, null).ShouldBe(0.1);
+            converter.Convert(0, null, null, null).ShouldBe(0);
+            converter.Convert(10, null, null, null).ShouldBe(-1);
+            converter.Convert(5.5, null, null, null).ShouldBe(-0.55);
         }
 
         [Test]

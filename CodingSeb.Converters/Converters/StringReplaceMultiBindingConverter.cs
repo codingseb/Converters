@@ -16,11 +16,18 @@ namespace CodingSeb.Converters
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null) return InDesigner;
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+            {
+                return InDesigner;
+            }
             else if (values.Length < 2 || values[1].ToString().Equals(string.Empty))
+            {
                 return values[0];
+            }
             else
+            {
                 return values[0].ToString().Replace(values[1].ToString(), values.Length >= 3 ? values[2].ToString() : string.Empty);
+            }
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

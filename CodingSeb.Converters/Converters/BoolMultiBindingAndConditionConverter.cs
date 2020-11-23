@@ -12,9 +12,6 @@ namespace CodingSeb.Converters
             return values.ToList().All(e => bool.TryParse(e.ToString(), out bool result) && result);
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

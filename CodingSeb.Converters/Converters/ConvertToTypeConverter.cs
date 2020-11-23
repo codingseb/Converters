@@ -9,7 +9,7 @@ namespace CodingSeb.Converters
     /// <summary>
     /// This Converter try to find a way to convert binding in the specified type.
     /// </summary>
-    [ContentProperty("ConvertToType")]
+    [ContentProperty(nameof(ConvertToType))]
     public class ConvertToTypeConverter : BaseConverter, IValueConverter
     {
         /// <summary>
