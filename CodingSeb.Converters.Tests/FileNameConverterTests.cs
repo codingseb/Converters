@@ -75,16 +75,16 @@ namespace CodingSeb.Converters.Tests
             converter.Convert("Test", null, null, null).ShouldBe(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Test.png"));
         }
 
-        [Test]
-        public void EntryAssembly()
-        {
-            FileNameConverter converter = new FileNameConverter()
-            {
-                DirectoryPathFrom = DirectoryPath.EntryAssemblyDirectory,
-            };
+        //[Test]
+        //public void EntryAssembly()
+        //{
+        //    FileNameConverter converter = new FileNameConverter()
+        //    {
+        //        DirectoryPathFrom = DirectoryPath.EntryAssemblyDirectory,
+        //    };
 
-            converter.Convert("Test", null, null, null).ShouldBe(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Test.png"));
-        }
+        //    converter.Convert("Test", null, null, null).ShouldBe(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Test.png"));
+        //}
 
         [Test]
         public void WindowsDirectory()

@@ -21,17 +21,14 @@ namespace CodingSeb.Converters
 
             if (values.Length >= 3 && (bool)values[2])
             {
-                return values[0].ToString().Contains(values[1].ToString(), StringComparison.OrdinalIgnoreCase);
+                return (values[0]?.ToString().IndexOf(values[1]?.ToString() ?? string.Empty, StringComparison.OrdinalIgnoreCase) ?? -1) > -1;
             }
             else
             {
-                return values[0].ToString().Contains(values[1].ToString());
+                return values[0]?.ToString().Contains(values[1]?.ToString() ?? string.Empty) ?? false;
             }
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

@@ -12,7 +12,7 @@
             <TextBlock Text="{Binding IsChecked, 
                         ElementName=chkChainingConverter,
                         Mode=OneWay,
-                        Converter={ChainingConverter Converter1={ReverseBoolConverter}, Converter2={BoolToStringConverter TrueValue='TrueValue', FalseValue='FalseValue'} }}" 
+                        Converter={ChainingConverter {ReverseBoolConverter}, {BoolToStringConverter TrueValue='TrueValue', FalseValue='FalseValue'}}}" 
                    VerticalAlignment="Center"
                    Margin="5,0"/>
         </Border>

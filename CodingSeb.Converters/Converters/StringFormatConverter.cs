@@ -55,7 +55,7 @@ namespace CodingSeb.Converters
             }
             else
             {
-                string sValue = value.ToString()[variableMatch[0].Index..];
+                string sValue = value.ToString().Substring(variableMatch[0].Index);
                 sValue = sValue.Substring(0, sValue.Length - (Format.Length - (variableMatch[0].Index + variableMatch[0].Length)));
 
                 return TypeDescriptor.GetConverter(targetType).ConvertFromString(sValue);

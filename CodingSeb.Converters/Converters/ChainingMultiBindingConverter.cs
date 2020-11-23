@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
@@ -16,67 +18,102 @@ namespace CodingSeb.Converters
     [ContentWrapper(typeof(IValueConverter))]
     public class ChainingMultiBindingConverter : BaseConverter, IMultiValueConverter
     {
+        #region Constructors
+
+        public ChainingMultiBindingConverter()
+        { }
+
+        public ChainingMultiBindingConverter(IMultiValueConverter multiValueConverter1) => MultiValueConverter1 = multiValueConverter1;
+
+        public ChainingMultiBindingConverter(IMultiValueConverter multiValueConverter1, IValueConverter converter2) : this(multiValueConverter1) => Converter2 = converter2;
+
+        public ChainingMultiBindingConverter(IMultiValueConverter multiValueConverter1, IValueConverter converter2, IValueConverter converter3) : this(multiValueConverter1, converter2)
+            => Converters.Add(converter3);
+
+        public ChainingMultiBindingConverter(IMultiValueConverter multiValueConverter1, IValueConverter converter2, IValueConverter converter3, IValueConverter converter4)
+            : this(multiValueConverter1, converter2, converter3) => Converters.Add(converter4);
+
+        public ChainingMultiBindingConverter(IMultiValueConverter multiValueConverter1, IValueConverter converter2, IValueConverter converter3, IValueConverter converter4, IValueConverter converter5)
+            : this(multiValueConverter1, converter2, converter3, converter4) => Converters.Add(converter5);
+
+        public ChainingMultiBindingConverter(IMultiValueConverter multiValueConverter1, IValueConverter converter2, IValueConverter converter3, IValueConverter converter4, IValueConverter converter5, IValueConverter converter6)
+            : this(multiValueConverter1, converter2, converter3, converter4, converter5) => Converters.Add(converter6);
+
+        public ChainingMultiBindingConverter(IMultiValueConverter multiValueConverter1, IValueConverter converter2, IValueConverter converter3, IValueConverter converter4, IValueConverter converter5, IValueConverter converter6, IValueConverter converter7)
+            : this(multiValueConverter1, converter2, converter3, converter4, converter5, converter6) => Converters.Add(converter7);
+
+        public ChainingMultiBindingConverter(IMultiValueConverter multiValueConverter1, IValueConverter converter2, IValueConverter converter3, IValueConverter converter4, IValueConverter converter5, IValueConverter converter6, IValueConverter converter7, IValueConverter converter8)
+            : this(multiValueConverter1, converter2, converter3, converter4, converter5, converter6, converter7) => Converters.Add(converter8);
+
+        public ChainingMultiBindingConverter(IMultiValueConverter multiValueConverter1, IValueConverter converter2, IValueConverter converter3, IValueConverter converter4, IValueConverter converter5, IValueConverter converter6, IValueConverter converter7, IValueConverter converter8, IValueConverter converter9)
+            : this(multiValueConverter1, converter2, converter3, converter4, converter5, converter6, converter7, converter8) => Converters.Add(converter9);
+
+        public ChainingMultiBindingConverter(IMultiValueConverter multiValueConverter1, IValueConverter converter2, IValueConverter converter3, IValueConverter converter4, IValueConverter converter5, IValueConverter converter6, IValueConverter converter7, IValueConverter converter8, IValueConverter converter9, IValueConverter converter10)
+            : this(multiValueConverter1, converter2, converter3, converter4, converter5, converter6, converter7, converter8, converter9) => Converters.Add(converter10);
+
+        #endregion
+
         /// <summary>
         /// First Converter In the case of MultiBinding
         /// </summary>
+        [ConstructorArgument("multiValueConverter1")]
         public IMultiValueConverter MultiValueConverter1 { get; set; }
 
         /// <summary>
         /// Second Converter to chain (output converter)
         /// </summary>
+        [ConstructorArgument("converter2")]
         public IValueConverter Converter2 { get; set; }
 
         /// <summary>
         /// For a list of converters to chain (Use as content Property, Converter1 and Converter2 must be null)
         /// </summary>
-        public List<IValueConverter> Converters { get; } = new List<IValueConverter>();
+        public Collection<IValueConverter> Converters { get; } = new Collection<IValueConverter>();
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (Converter2 == null)
+            var converters = Converters.ToList();
+
+            if (Converter2 != null)
+                converters.Insert(0, Converter2);
+
+            object value = MultiValueConverter1.Convert(values, targetType, parameter, culture);
+
+            foreach (var converter in converters)
             {
-                object value = MultiValueConverter1.Convert(values, targetType, parameter, culture);
+                value = converter.Convert(value, targetType, parameter, culture);
 
-                foreach (var converter in Converters)
+                if (value == Binding.DoNothing)
                 {
-                    value = converter.Convert(value, targetType, parameter, culture);
-                    if (value == Binding.DoNothing)
-                    {
-                        return Binding.DoNothing;
-                    }
-
-                    if (value == DependencyProperty.UnsetValue)
-                    {
-                        return DependencyProperty.UnsetValue;
-                    }
+                    return Binding.DoNothing;
                 }
 
-                return value;
+                if (value == DependencyProperty.UnsetValue)
+                {
+                    return DependencyProperty.UnsetValue;
+                }
             }
-            else
-            {
-                return Converter2.Convert(MultiValueConverter1.Convert(values, targetType, parameter, culture), targetType, parameter, culture);
-            }
+
+            return value;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            if (Converter2 == null)
-            {
-                List<IValueConverter> convertersReverseList = new List<IValueConverter>(Converters);
-                convertersReverseList.Reverse();
+            var converters = Converters.ToList();
 
-                foreach (var converter in convertersReverseList)
-                {
-                    value = converter.ConvertBack(value, targetTypes[0], parameter, culture);
-                }
+            if (Converter2 != null)
+                converters.Insert(0, Converter2);
 
-                return MultiValueConverter1.ConvertBack(value, targetTypes, parameter, culture);
-            }
-            else
+            var convertersReverseList = new List<IValueConverter>(Converters);
+
+            convertersReverseList.Reverse();
+
+            foreach (var converter in Enumerable.Reverse(converters))
             {
-                return MultiValueConverter1.ConvertBack(Converter2.ConvertBack(value, targetTypes[0], parameter, culture), targetTypes, parameter, culture);
+                value = converter.ConvertBack(value, targetTypes[0], parameter, culture);
             }
+
+            return MultiValueConverter1.ConvertBack(value, targetTypes, parameter, culture);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using Shouldly;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
 
@@ -13,22 +12,17 @@ namespace CodingSeb.Converters.Tests
         [Category("Convert")]
         public void MappingConverterTest_StringToString_Convert()
         {
-            MappingConverter converter = new MappingConverter
+            MappingConverter converter = new MappingConverter();
+            converter.Mappings.Add(new Mapping()
             {
-                Mappings = new Collection<Mapping>(new Mapping[]
-                {
-                    new Mapping()
-                    {
-                        Key = "Test 1",
-                        Value = "Yes",
-                    },
-                    new Mapping()
-                    {
-                        Key = "Test 2",
-                        Value = "No",
-                    },
-                })
-            };
+                Key = "Test 1",
+                Value = "Yes",
+            });
+            converter.Mappings.Add(new Mapping()
+            {
+                Key = "Test 2",
+                Value = "No",
+            });
 
             converter.Convert("Test 1", null, null, null).ShouldBe("Yes");
             converter.Convert("Test 2", null, null, null).ShouldBe("No");
@@ -47,22 +41,17 @@ namespace CodingSeb.Converters.Tests
         [Category("ConvertBack")]
         public void MappingConverterTest_StringToString_ConvertBack()
         {
-            MappingConverter converter = new MappingConverter
+            MappingConverter converter = new MappingConverter();
+            converter.Mappings.Add(new Mapping()
             {
-                Mappings = new Collection<Mapping>(new Mapping[]
+                Key = "Test 1",
+                Value = "Yes",
+            });
+            converter.Mappings.Add(new Mapping()
             {
-                new Mapping()
-                {
-                    Key = "Test 1",
-                    Value = "Yes",
-                },
-                new Mapping()
-                {
-                    Key = "Test 2",
-                    Value = "No",
-                },
-            })
-            };
+                Key = "Test 2",
+                Value = "No",
+            });
 
             converter.ConvertBack("Yes", null, null, null).ShouldBe("Test 1");
             converter.ConvertBack("No", null, null, null).ShouldBe("Test 2");
@@ -81,22 +70,17 @@ namespace CodingSeb.Converters.Tests
         [Category("Convert")]
         public void MappingConverterTest_ColorToVisibility_Convert()
         {
-            MappingConverter converter = new MappingConverter
+            MappingConverter converter = new MappingConverter();
+            converter.Mappings.Add(new Mapping()
             {
-                Mappings = new Collection<Mapping>(new Mapping[]
+                Key = Colors.Red,
+                Value = Visibility.Collapsed,
+            });
+            converter.Mappings.Add(new Mapping()
             {
-                new Mapping()
-                {
-                    Key = Colors.Red,
-                    Value = Visibility.Collapsed,
-                },
-                new Mapping()
-                {
-                    Key = Colors.Blue,
-                    Value = Visibility.Visible,
-                },
-            })
-            };
+                Key = Colors.Blue,
+                Value = Visibility.Visible,
+            });
 
             converter.Convert(Colors.Red, null, null, null).ShouldBe(Visibility.Collapsed);
             converter.Convert(Colors.Blue, null, null, null).ShouldBe(Visibility.Visible);
@@ -119,22 +103,17 @@ namespace CodingSeb.Converters.Tests
         [Category("ConvertBack")]
         public void MappingConverterTest_ColorToVisibility_ConvertBack()
         {
-            MappingConverter converter = new MappingConverter
+            MappingConverter converter = new MappingConverter();
+            converter.Mappings.Add(new Mapping()
             {
-                Mappings = new Collection<Mapping>(new Mapping[]
+                Key = Colors.Red,
+                Value = Visibility.Collapsed,
+            });
+            converter.Mappings.Add(new Mapping()
             {
-                new Mapping()
-                {
-                    Key = Colors.Red,
-                    Value = Visibility.Collapsed,
-                },
-                new Mapping()
-                {
-                    Key = Colors.Blue,
-                    Value = Visibility.Visible,
-                },
-            })
-            };
+                Key = Colors.Blue,
+                Value = Visibility.Visible,
+            });
 
             converter.ConvertBack(Visibility.Collapsed, null, null, null).ShouldBe(Colors.Red);
             converter.ConvertBack(Visibility.Visible, null, null, null).ShouldBe(Colors.Blue);
