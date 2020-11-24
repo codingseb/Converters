@@ -24,7 +24,7 @@ namespace CodingSeb.Converters.Examples
 {
     internal class A
     {
-        public int IntProperty { get; set; } = 0;
+        public int IntProperty { get; set; }
     }
 
     internal class B : A
