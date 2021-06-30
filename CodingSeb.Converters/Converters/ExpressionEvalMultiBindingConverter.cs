@@ -94,7 +94,7 @@ namespace CodingSeb.Converters
                     }
                 });
 
-                evaluator.OptionEvaluateFunctionActive = OptionEvaluateFunctionActive;
+                evaluator.OptionsFunctionalities.EvaluateFunctionActive = OptionEvaluateFunctionActive;
 
                 variables["bindings"] = values;
 
@@ -128,7 +128,7 @@ namespace CodingSeb.Converters
 
                 evaluator.Namespaces.ToList().NamespacesListForConverters();
 
-                evaluator.OptionEvaluateFunctionActive = OptionEvaluateFunctionActive;
+                evaluator.OptionsFunctionalities.EvaluateFunctionActive = OptionEvaluateFunctionActive;
 
                 if (EvaluateBindingAsAnExpressionForConvertBack)
                 {
