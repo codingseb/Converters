@@ -13,7 +13,7 @@ namespace CodingSeb.Converters
     public class StringReplaceConverter : BaseConverter, IValueConverter
     {
         public StringReplaceConverter()
-        {}
+        { }
 
         public StringReplaceConverter(string oldString)
         {

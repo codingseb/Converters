@@ -104,14 +104,10 @@ namespace CodingSeb.Converters
                 value = converter.Convert(value, targetType, parameter, culture);
 
                 if (value == Binding.DoNothing)
-                {
                     return Binding.DoNothing;
-                }
 
                 if (value == DependencyProperty.UnsetValue)
-                {
-                    return DependencyProperty.UnsetValue;
-                }
+                    return value;
             }
 
             return value;

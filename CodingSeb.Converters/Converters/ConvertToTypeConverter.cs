@@ -13,7 +13,7 @@ namespace CodingSeb.Converters
     public class ConvertToTypeConverter : BaseConverter, IValueConverter
     {
         public ConvertToTypeConverter()
-        {}
+        { }
 
         public ConvertToTypeConverter(Type convertToType)
         {

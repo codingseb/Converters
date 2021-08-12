@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Windows;
 using System.Windows.Data;
 
 namespace CodingSeb.Converters
@@ -11,11 +13,13 @@ namespace CodingSeb.Converters
     /// </summary>
     public class FileNameConverter : BaseConverter, IValueConverter
     {
+        public string InDesigner { get; set; }
+
         /// <summary>
         /// The extension to add to the binding with the dot.
-        /// By default ".png"
+        /// By default string.Empty
         /// </summary>
-        public string Extension { get; set; } = ".png";
+        public string Extension { get; set; } = string.Empty;
 
         /// <summary>
         /// An optional prefix to add to the filename
@@ -39,12 +43,21 @@ namespace CodingSeb.Converters
         /// <summary>
         /// if <c>true</c> the converter return a Uri in place of a string
         /// if <c>false</c> the converter return a string
-        /// By default : false 
+        /// By default : false
         /// </summary>
         public bool AsUri { get; set; }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
+                return InDesigner;
+
+            if (value == Binding.DoNothing)
+                return Binding.DoNothing;
+
+            if (value == DependencyProperty.UnsetValue)
+                return value;
+
             string result;
             switch (DirectoryPathFrom)
             {

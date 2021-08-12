@@ -11,7 +11,7 @@ namespace CodingSeb.Converters
     public class TypeCheckingConverter : BaseConverter, IValueConverter
     {
         public TypeCheckingConverter()
-        {}
+        { }
         public TypeCheckingConverter(Type typeToCheck)
         {
             TypeToCheck = typeToCheck;

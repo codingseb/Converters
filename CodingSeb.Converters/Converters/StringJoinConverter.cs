@@ -13,7 +13,7 @@ namespace CodingSeb.Converters
     public class StringJoinConverter : BaseConverter, IValueConverter
     {
         public StringJoinConverter()
-        {}
+        { }
 
         public StringJoinConverter(string separator)
         {

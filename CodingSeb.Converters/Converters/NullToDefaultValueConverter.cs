@@ -12,7 +12,7 @@ namespace CodingSeb.Converters
     public class NullToDefaultValueConverter : BaseConverter, IValueConverter
     {
         public NullToDefaultValueConverter()
-        {}
+        { }
 
         public NullToDefaultValueConverter(object valueIfNull)
         {

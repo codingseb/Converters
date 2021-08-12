@@ -17,7 +17,7 @@ namespace CodingSeb.Converters
     public class BoolToValuesGenericConverter<T> : BaseConverter, IValueConverter
     {
         public BoolToValuesGenericConverter()
-        {}
+        { }
 
         public BoolToValuesGenericConverter(T trueValue)
         {
@@ -122,13 +122,13 @@ namespace CodingSeb.Converters
     public class BoolToStringConverter : BoolToValuesGenericConverter<string>
     {
         public BoolToStringConverter()
-        {}
+        { }
 
         public BoolToStringConverter(string trueValue) : base(trueValue)
-        {}
+        { }
 
         public BoolToStringConverter(string trueValue, string falseValue) : base(trueValue, falseValue)
-        {}
+        { }
     }
 
     public class BoolToBrushConverter : BoolToValuesGenericConverter<Brush>
@@ -143,7 +143,7 @@ namespace CodingSeb.Converters
         { }
     }
 
-    public class BoolToObjectConverter : BoolToValuesGenericConverter<object> 
+    public class BoolToObjectConverter : BoolToValuesGenericConverter<object>
     {
         public BoolToObjectConverter()
         { }

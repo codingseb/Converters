@@ -31,6 +31,7 @@ namespace CodingSeb.Converters.Tests
             {
                 DirectoryPathFrom = DirectoryPath.AbsolutePath,
                 Directory = @"C:\MyDirectory",
+                Extension = ".png",
             };
 
             converter.Convert("Test", null, null, null).ShouldBe(@"C:\MyDirectory\Test.png");
@@ -43,7 +44,8 @@ namespace CodingSeb.Converters.Tests
             {
                 DirectoryPathFrom = DirectoryPath.AbsolutePath,
                 Directory = @"C:\MyDirectory",
-                FileNamePrefix = "prefix"
+                FileNamePrefix = "prefix",
+                Extension = ".png",
             };
 
             converter.Convert("FileName", null, null, null).ShouldBe(@"C:\MyDirectory\prefixFileName.png");
@@ -70,7 +72,7 @@ namespace CodingSeb.Converters.Tests
                 DirectoryPathFrom = DirectoryPath.ExecutingAssemblyDirectory,
             };
 
-            converter.Convert("Test", null, null, null).ShouldBe(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Test.png"));
+            converter.Convert("Test.txt", null, null, null).ShouldBe(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Test.txt"));
         }
 
         //[Test]
@@ -93,10 +95,10 @@ namespace CodingSeb.Converters.Tests
                 Directory = "SubDirectory",
             };
 
-            converter.Convert("Test", null, null, null)
+            converter.Convert("Test.txt", null, null, null)
                 .ToString()
                 .ToLower()
-                .ShouldBe(@"C:\Windows\SubDirectory\Test.png".ToLower());
+                .ShouldBe(@"C:\Windows\SubDirectory\Test.txt".ToLower());
         }
 
         [Test]
@@ -106,7 +108,8 @@ namespace CodingSeb.Converters.Tests
             {
                 DirectoryPathFrom = DirectoryPath.Windows,
                 Directory = "SubDirectory",
-                FileNamePrefix = "prefix"
+                FileNamePrefix = "prefix",
+                Extension = ".png",
             };
 
             converter.Convert("FileName", null, null, null)
