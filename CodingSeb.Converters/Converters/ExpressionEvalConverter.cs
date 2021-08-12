@@ -15,7 +15,7 @@ namespace CodingSeb.Converters
     public class ExpressionEvalConverter : BaseConverter, IValueConverter
     {
         public ExpressionEvalConverter()
-        {}
+        { }
 
         public ExpressionEvalConverter(string expression)
         {

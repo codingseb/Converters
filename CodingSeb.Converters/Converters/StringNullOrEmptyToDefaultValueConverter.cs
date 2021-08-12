@@ -13,7 +13,7 @@ namespace CodingSeb.Converters
     public class StringNullOrEmptyToDefaultValueConverter : BaseConverter, IValueConverter
     {
         public StringNullOrEmptyToDefaultValueConverter()
-        {}
+        { }
 
         public StringNullOrEmptyToDefaultValueConverter(string defaultValue)
         {

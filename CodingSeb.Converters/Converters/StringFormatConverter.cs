@@ -16,7 +16,7 @@ namespace CodingSeb.Converters
         private static readonly Regex variableRegex = new Regex("[{][^}]+[}]");
 
         public StringFormatConverter()
-        {}
+        { }
 
         public StringFormatConverter(string format)
         {

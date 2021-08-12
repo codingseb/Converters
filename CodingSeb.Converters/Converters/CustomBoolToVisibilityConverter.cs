@@ -14,7 +14,7 @@ namespace CodingSeb.Converters
     public class CustomBoolToVisibilityConverter : BaseConverter, IValueConverter
     {
         public CustomBoolToVisibilityConverter()
-        {}
+        { }
 
         public CustomBoolToVisibilityConverter(Visibility trueValue)
         {

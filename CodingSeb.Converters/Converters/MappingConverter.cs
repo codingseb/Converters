@@ -39,7 +39,7 @@ namespace CodingSeb.Converters
         #region Constructors
 
         public MappingConverter()
-        {}
+        { }
         public MappingConverter(Mapping mapping1) => Mappings.Add(mapping1);
         public MappingConverter(Mapping mapping1, Mapping mapping2)
             : this(mapping1) => Mappings.Add(mapping2);

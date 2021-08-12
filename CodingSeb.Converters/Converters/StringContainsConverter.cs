@@ -14,7 +14,7 @@ namespace CodingSeb.Converters
     public class StringContainsConverter : BaseConverter, IValueConverter
     {
         public StringContainsConverter()
-        {}
+        { }
 
         public StringContainsConverter(string containsString)
         {

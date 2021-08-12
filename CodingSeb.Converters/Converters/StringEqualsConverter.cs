@@ -14,7 +14,7 @@ namespace CodingSeb.Converters.Converters
     public class StringEqualsConverter : BaseConverter, IValueConverter
     {
         public StringEqualsConverter()
-        {}
+        { }
 
         public StringEqualsConverter(string value)
         {

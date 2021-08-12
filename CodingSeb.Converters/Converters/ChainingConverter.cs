@@ -20,13 +20,13 @@ namespace CodingSeb.Converters
         #region Constructors
 
         public ChainingConverter()
-        {}
+        { }
 
         public ChainingConverter(IValueConverter converter1) => Converter1 = converter1;
 
         public ChainingConverter(IValueConverter converter1, IValueConverter converter2) : this(converter1) => Converter2 = converter2;
 
-        public ChainingConverter(IValueConverter converter1, IValueConverter converter2, IValueConverter converter3) : this(converter1, converter2) 
+        public ChainingConverter(IValueConverter converter1, IValueConverter converter2, IValueConverter converter3) : this(converter1, converter2)
             => Converters.Add(converter3);
 
         public ChainingConverter(IValueConverter converter1, IValueConverter converter2, IValueConverter converter3, IValueConverter converter4)
@@ -71,6 +71,9 @@ namespace CodingSeb.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == Binding.DoNothing)
+                return Binding.DoNothing;
+
             if (value == DependencyProperty.UnsetValue)
                 return value;
 
@@ -86,14 +89,10 @@ namespace CodingSeb.Converters
                 value = converter.Convert(value, targetType, parameter, culture);
 
                 if (value == Binding.DoNothing)
-                {
                     return Binding.DoNothing;
-                }
 
                 if (value == DependencyProperty.UnsetValue)
-                {
-                    return DependencyProperty.UnsetValue;
-                }
+                    return value;
             }
 
             return value;

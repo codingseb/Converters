@@ -12,7 +12,7 @@ namespace CodingSeb.Converters
     public class DoubleAddValueConverter : BaseConverter, IValueConverter
     {
         public DoubleAddValueConverter()
-        {}
+        { }
 
         public DoubleAddValueConverter(double add)
         {
