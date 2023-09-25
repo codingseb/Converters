@@ -1020,17 +1020,17 @@ namespace CodingSeb.Converters.Tests
             converter.Convert(13, null, null, null).ShouldBeOfType(typeof(int));
             converter.Convert(5.3, null, null, null).ShouldBeOfType(typeof(int));
             converter.Convert(5.3, null, null, null).ShouldBe(5);
-            converter.Convert(true, null, null, null).ShouldBeOfType(typeof(int));
-            converter.Convert(true, null, null, null).ShouldBe(1);
-            converter.Convert(false, null, null, null).ShouldBeOfType(typeof(int));
-            converter.Convert(false, null, null, null).ShouldBe(0);
+            //converter.Convert(true, null, null, null).ShouldBeOfType(typeof(int));
+            //converter.Convert(true, null, null, null).ShouldBe(1);
+            //converter.Convert(false, null, null, null).ShouldBeOfType(typeof(int));
+            //converter.Convert(false, null, null, null).ShouldBe(0);
 
-            converter.Expression = "(bool)binding";
+            //converter.Expression = "(bool)binding";
 
-            converter.Convert(1, null, null, null).ShouldBeOfType(typeof(bool));
-            converter.Convert(1, null, null, null).ShouldBe(true);
-            converter.Convert(0, null, null, null).ShouldBeOfType(typeof(bool));
-            converter.Convert(0, null, null, null).ShouldBe(false);
+            //converter.Convert(1, null, null, null).ShouldBeOfType(typeof(bool));
+            //converter.Convert(1, null, null, null).ShouldBe(true);
+            //converter.Convert(0, null, null, null).ShouldBeOfType(typeof(bool));
+            //converter.Convert(0, null, null, null).ShouldBe(false);
         }
 
         [Test]

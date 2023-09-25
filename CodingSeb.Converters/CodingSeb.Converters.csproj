@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0-windows;netcoreapp3.0;net45</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows;netcoreapp3.0;net462</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <Description>Some Converters to use in WPF</Description>
     <PackageReleaseNotes />
@@ -10,12 +10,12 @@
     <Copyright>Copyright © Coding Seb 2019</Copyright>
     <PackageProjectUrl>https://github.com/codingseb/Converters</PackageProjectUrl>
     <Authors>CodingSeb</Authors>
-    <Version>1.0.4</Version>
-    <AssemblyVersion>1.0.4.0</AssemblyVersion>
+    <Version>1.0.5</Version>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CodingSeb.ExpressionEvaluator" Version="1.4.31" />
+    <PackageReference Include="CodingSeb.ExpressionEvaluator" Version="1.4.40" />
   </ItemGroup>
 
   <ItemGroup>
