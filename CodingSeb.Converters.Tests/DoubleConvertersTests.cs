@@ -71,5 +71,29 @@ namespace CodingSeb.Converters.Tests
             converter.AdditionalConstValueToMultiply = -2d;
             ((double)converter.Convert(new object[] { 2d, -8d, 0.5 }, null, null, null)).ShouldBe(16d);
         }
+
+        [Test]
+        public void DoubleMaxValueConverter()
+        {
+            DoubleMaxValueConverter converter = new DoubleMaxValueConverter() { MaxValue = 10d };
+
+            ((double)converter.Convert(-10d, null, null, null)).ShouldBe(10d);
+            ((double)converter.Convert(10d, null, null, null)).ShouldBe(10d);
+            ((double)converter.Convert(150d, null, null, null)).ShouldBe(150d);
+            ((double)converter.Convert(11d, null, null, null)).ShouldBe(11d);
+            ((double)converter.Convert(0d, null, null, null)).ShouldBe(10d);
+        }
+
+        [Test]
+        public void DoubleMinValueConverter()
+        {
+            DoubleMinValueConverter converter = new DoubleMinValueConverter() { MinValue = 10d };
+
+            ((double)converter.Convert(-10d, null, null, null)).ShouldBe(-10d);
+            ((double)converter.Convert(10d, null, null, null)).ShouldBe(10d);
+            ((double)converter.Convert(150d, null, null, null)).ShouldBe(10d);
+            ((double)converter.Convert(9d, null, null, null)).ShouldBe(9d);
+            ((double)converter.Convert(0d, null, null, null)).ShouldBe(0d);
+        }
     }
 }

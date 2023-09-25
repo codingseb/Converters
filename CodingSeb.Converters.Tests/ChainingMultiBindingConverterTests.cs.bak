@@ -49,23 +49,5 @@ namespace CodingSeb.Converters.Tests
             ((bool)masterConverter.Convert(new object[] { false, true }, null, null, null)).ShouldBeTrue();
             ((bool)masterConverter.Convert(new object[] { false, false }, null, null, null)).ShouldBeTrue();
         }
-
-        [Category("Convert")]
-        [Test]
-        public void ChainMultiValuesWithConverter2WithParametersConverter()
-        {
-            ChainingMultiBindingConverter masterConverter = new ChainingMultiBindingConverter();
-
-            DoubleMaxValueMultiBindingConverter maxEvalMultiBindingConverter = new DoubleMaxValueMultiBindingConverter()
-            {
-                DefaultValue = 0.0
-            };
-            masterConverter.MultiValueConverter1 = maxEvalMultiBindingConverter;
-            masterConverter.Converters.Add(new DoubleAddValueConverter());
-            masterConverter.Converters.Add(new DoubleAddValueConverter());
-
-            ((double)masterConverter.Convert(new object[] { 1.0, 2.0 }, null, "1,2", null)).ShouldBe(5.0);
-
-        }
     }
 }

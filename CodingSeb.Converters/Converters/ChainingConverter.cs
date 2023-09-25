@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
@@ -69,6 +70,10 @@ namespace CodingSeb.Converters
         /// </summary>
         public Collection<IValueConverter> Converters { get; } = new Collection<IValueConverter>();
 
+        private string[] parameters;
+        private System.Collections.Generic.List<IValueConverter> converters;
+
+        ///<inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == Binding.DoNothing)
@@ -77,7 +82,10 @@ namespace CodingSeb.Converters
             if (value == DependencyProperty.UnsetValue)
                 return value;
 
-            var converters = Converters.ToList();
+            if (parameter != null)
+                parameters = Regex.Split(parameter.ToString(), @"(?<!\\),");
+
+            converters = Converters.ToList();
 
             if (Converter2 != null)
                 converters.Insert(0, Converter2);
@@ -86,7 +94,7 @@ namespace CodingSeb.Converters
 
             foreach (var converter in converters)
             {
-                value = converter.Convert(value, targetType, parameter, culture);
+                value = converter.Convert(value, targetType, GetParameter(converter), culture);
 
                 if (value == Binding.DoNothing)
                     return Binding.DoNothing;
@@ -98,12 +106,39 @@ namespace CodingSeb.Converters
             return value;
         }
 
+        private object GetParameter(IValueConverter converter)
+        {
+            if (parameters == null)
+                return null;
+
+            var index = converters.IndexOf(converter);
+            string parameter;
+
+            try
+            {
+                parameter = parameters[index];
+            }
+            catch (IndexOutOfRangeException)
+            {
+                parameter = null;
+            }
+
+            if (parameter != null)
+                parameter = Regex.Unescape(parameter);
+
+            return parameter;
+        }
+
+        ///<inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == DependencyProperty.UnsetValue)
                 return value;
 
             var converters = Converters.ToList();
+
+            if (parameter != null)
+                parameters = Regex.Split(parameter.ToString(), @"(?<!\\),");
 
             if (Converter2 != null)
                 converters.Insert(0, Converter2);
@@ -112,7 +147,7 @@ namespace CodingSeb.Converters
 
             foreach (var converter in Enumerable.Reverse(converters))
             {
-                value = converter.ConvertBack(value, targetType, parameter, culture);
+                value = converter.ConvertBack(value, targetType, GetParameter(converter), culture);
                 if (value == Binding.DoNothing)
                 {
                     return Binding.DoNothing;

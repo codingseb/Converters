@@ -81,18 +81,5 @@ namespace CodingSeb.Converters.Tests
             ((Visibility)masterConverter.Convert(5, null, null, null)).ShouldBe(Visibility.Collapsed);
             ((Visibility)masterConverter.Convert(10, null, null, null)).ShouldBe(Visibility.Collapsed);
         }
-
-        [Category("Convert")]
-        [Test]
-        public void ChainConvertersWithParametersConverter()
-        {
-            ChainingConverter masterConverter = new ChainingConverter();
-
-            masterConverter.Converters.Add(new DoubleAddValueConverter());
-            masterConverter.Converters.Add(new DoubleFactorValueConverter() { UseParameterTo = DoubleConvertersUseParameterTo.Multiply });
-
-            ((double)masterConverter.Convert(1.0, null, "2,3", null)).ShouldBe(9.0);
-            ((double)masterConverter.Convert(2.1, null, "1,2", null)).ShouldBe(6.2);
-        }
     }
 }

@@ -63,6 +63,10 @@ namespace CodingSeb.Converters
 
                     return tempConverter.Convert(tempValue, tempConverter.ConvertToType, parameter, culture);
                 }
+                else if(value.GetType() == typeof(string))
+                {
+                    return TypeDescriptor.GetConverter(ConvertToType ?? targetType).ConvertFromInvariantString((string)value);
+                }
                 else
                 {
                     throw;
@@ -101,6 +105,10 @@ namespace CodingSeb.Converters
                     tempConverter.ConvertToType = ConvertBackToType ?? targetType;
 
                     return tempConverter.Convert(tempValue, tempConverter.ConvertToType, parameter, culture);
+                }
+                else if (value.GetType() == typeof(string))
+                {
+                    return TypeDescriptor.GetConverter(ConvertBackToType ?? targetType).ConvertFromInvariantString((string)value);
                 }
                 else
                 {

@@ -43,11 +43,11 @@ namespace CodingSeb.Converters
 
                 for (int i = 0; i < values.Length; i++)
                 {
-                    format += "{" + i.ToString() + "}";
+                    format += "{" + i.ToString(CultureInfo.InvariantCulture) + "}";
                 }
             }
 
-            return string.Format(format.EscapeForXaml(), values);
+            return string.Format(CultureInfo.InvariantCulture,format.EscapeForXaml(), values);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();

@@ -6,15 +6,29 @@
              xmlns:local="clr-namespace:CodingSeb.Converters.Examples"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel Orientation="Horizontal">
-        <CheckBox x:Name="chkChainingConverter" Content="C_hainingConverter test (ReverseBool Chained with BoolToStringConverter)" />
-        <Border BorderBrush="Black" BorderThickness="1">
-            <TextBlock Text="{Binding IsChecked, 
+    <UserControl.DataContext>
+        <local:ChainingConverterViewModel/>
+    </UserControl.DataContext>
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <CheckBox x:Name="chkChainingConverter" Content="C_hainingConverter test (ReverseBool Chained with BoolToStringConverter)" />
+            <Border BorderBrush="Black" BorderThickness="1">
+                <TextBlock Text="{Binding IsChecked, 
                         ElementName=chkChainingConverter,
                         Mode=OneWay,
                         Converter={ChainingConverter {BoolReverseConverter}, {BoolToStringConverter Yes, No}}}" 
                    VerticalAlignment="Center"
                    Margin="5,0"/>
-        </Border>
+            </Border>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="chkChainingConverterWithParam" Text="{Binding Value}" Margin="0,0,5,0" />
+            <TextBlock Text="Chanining tests parameters x2+3   "/>
+            <Border BorderBrush="Black" BorderThickness="1">
+                <TextBlock Text="{Binding Value, Converter={ChainingConverter {DoubleFactorValueConverter UseParameterTo=Multiply}, {DoubleAddValueConverter}},ConverterParameter='2,3'}"
+                   VerticalAlignment="Center"
+                   Margin="5,0"/>
+            </Border>
+        </StackPanel>
     </StackPanel>
 </UserControl>

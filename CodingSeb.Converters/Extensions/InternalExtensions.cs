@@ -57,7 +57,7 @@ namespace CodingSeb.Converters
                 .GetValue(obj);
         }
 
-        public static object GetPropertValue(this object obj, string propertyName, Type forceType = null)
+        public static object GetPropertyValue(this object obj, string propertyName, Type forceType = null)
         {
             return (forceType ?? obj?.GetType())?
                 .GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?
