@@ -199,8 +199,6 @@ namespace CodingSeb.Converters
         { }
     }
 
-
-
     /// <summary>
     /// To Show 2 differents static resources BitmapImage in case corresponding to a true or false value
     /// </summary>
