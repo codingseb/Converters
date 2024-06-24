@@ -9,11 +9,10 @@ using System.Windows.Media.Imaging;
 namespace CodingSeb.Converters
 {
     /// <summary>
-    /// Cette classe est un converter générique de boolean en valeur de votre choix
-    /// Pour un type de valeur spécifique héritez de cette classe
-    /// si une valeur est null retourne TrueValue si OnNullValue est true retourne FalseValue si OnNullValue est false
+    /// This class is a fenric converter from boolean to the type of value of your choice
+    /// For a specific type of converter inherits from this class
     /// </summary>
-    /// <typeparam name="T">Type des valeurs FalseValue et TrueValue</typeparam>
+    /// <typeparam name="T">The type for FalseValue and TrueValue</typeparam>
     public class BoolToValuesGenericConverter<T> : BaseConverter, IValueConverter
     {
         public BoolToValuesGenericConverter()
@@ -119,6 +118,9 @@ namespace CodingSeb.Converters
         #endregion
     }
 
+    /// <summary>
+    /// To Convert a bool value specific strings
+    /// </summary>
     public class BoolToStringConverter : BoolToValuesGenericConverter<string>
     {
         public BoolToStringConverter()
@@ -131,6 +133,9 @@ namespace CodingSeb.Converters
         { }
     }
 
+    /// <summary>
+    /// To convert a bool value to specific brushes
+    /// </summary>
     public class BoolToBrushConverter : BoolToValuesGenericConverter<Brush>
     {
         public BoolToBrushConverter()
@@ -143,6 +148,45 @@ namespace CodingSeb.Converters
         { }
     }
 
+    /// <summary>
+    /// To convert a bool value to specific colors
+    /// </summary>
+    public class BoolToColorConverter : BoolToValuesGenericConverter<Color>
+    {
+        public BoolToColorConverter()
+        { }
+
+        public BoolToColorConverter(Color trueValue) : base(trueValue)
+        { }
+
+        public BoolToColorConverter(Color trueValue, Color falseValue) : base(trueValue, falseValue)
+        { }
+    }
+
+    /// <summary>
+    /// To convert a bool value to specific int values
+    /// by default FalseValue = 0 and TrueValue = 1
+    /// </summary>
+    public class BoolToIntConverter : BoolToValuesGenericConverter<int>
+    {
+        public BoolToIntConverter()
+        {
+            FalseValue = 0;
+            TrueValue = 1;
+        }
+
+        public BoolToIntConverter(int trueValue) : base(trueValue)
+        {
+            FalseValue = 0;
+        }
+
+        public BoolToIntConverter(int trueValue, int falseValue) : base(trueValue, falseValue)
+        { }
+    }
+
+    /// <summary>
+    /// To convert a bool value to specific objects
+    /// </summary>
     public class BoolToObjectConverter : BoolToValuesGenericConverter<object>
     {
         public BoolToObjectConverter()
@@ -154,6 +198,8 @@ namespace CodingSeb.Converters
         public BoolToObjectConverter(object trueValue, object falseValue) : base(trueValue, falseValue)
         { }
     }
+
+
 
     /// <summary>
     /// To Show 2 differents static resources BitmapImage in case corresponding to a true or false value
