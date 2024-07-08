@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
@@ -42,13 +43,13 @@ namespace CodingSeb.Converters
                 return InDesigner;
             }
 
-            string format = Format;
+            string format = FirstBindingIsFormat ? values.FirstOrDefault()?.ToString() : Format;
 
             if (format == null)
             {
                 format = string.Empty;
 
-                for (int i = 0; i < values.Length; i++)
+                for (int i = (FirstBindingIsFormat? 1 : 0); i < values.Length; i++)
                 {
                     format += "{" + i.ToString(CultureInfo.InvariantCulture) + "}";
                 }
