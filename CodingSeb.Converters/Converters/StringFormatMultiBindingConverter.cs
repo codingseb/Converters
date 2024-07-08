@@ -55,7 +55,7 @@ namespace CodingSeb.Converters
                 }
             }
 
-            return string.Format(CultureInfo.InvariantCulture,format.EscapeForXaml(), values);
+            return string.Format(CultureInfo.InvariantCulture,format.EscapeForXaml(), FirstBindingIsFormat ? values.Skip(1).ToArray() :values);
         }
 
         /// <inheritdoc/>
