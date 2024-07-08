@@ -54,6 +54,7 @@ namespace CodingSeb.Converters
         [ConstructorArgument("falseValue")]
         public Visibility FalseValue { get; set; } = Visibility.Collapsed;
 
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
@@ -72,6 +73,7 @@ namespace CodingSeb.Converters
             return value is bool x && x ? TrueValue : FalseValue;
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value is Visibility visibility && visibility == TrueValue;

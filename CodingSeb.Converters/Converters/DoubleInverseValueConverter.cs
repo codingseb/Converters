@@ -22,6 +22,7 @@ namespace CodingSeb.Converters
         /// </summary>
         public double ConvertBackDefaultValue { get; set; }
 
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
@@ -34,6 +35,7 @@ namespace CodingSeb.Converters
             }
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try

@@ -28,6 +28,13 @@ namespace CodingSeb.Converters
         [ConstructorArgument("format")]
         public string Format { get; set; }
 
+        /// <summary>
+        /// By default = <c>false</c>.<para/>
+        /// Set it to <c>true</c> to consider the first binding as the format of the string format in place of the <c>Format</c> Property
+        /// </summary>
+        public bool FirstBindingIsFormat { get; set; }
+
+        /// <inheritdoc/>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
@@ -50,6 +57,7 @@ namespace CodingSeb.Converters
             return string.Format(CultureInfo.InvariantCulture,format.EscapeForXaml(), values);
         }
 
+        /// <inheritdoc/>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

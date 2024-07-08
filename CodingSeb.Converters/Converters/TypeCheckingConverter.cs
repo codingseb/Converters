@@ -56,6 +56,7 @@ namespace CodingSeb.Converters
         /// </summary>
         public bool DefaultValue { get; set; }
 
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
@@ -99,6 +100,7 @@ namespace CodingSeb.Converters
             }
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

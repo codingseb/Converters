@@ -8,7 +8,7 @@ namespace CodingSeb.Converters
     /// <summary>
     /// Return the type of the binding
     /// </summary>
-    public class GetTypeConverter : MarkupExtension, IValueConverter
+    public class GetTypeConverter : BaseConverter, IValueConverter
     {
         /// <summary>
         /// Indicate if the converter must return the type as string with the namespace or not.
@@ -20,6 +20,7 @@ namespace CodingSeb.Converters
         /// </summary>
         public bool AsString { get; set; } = false;
 
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (AsString)
@@ -35,8 +36,7 @@ namespace CodingSeb.Converters
             return value.GetType();
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
-
-        public override object ProvideValue(IServiceProvider serviceProvider) => this;
     }
 }

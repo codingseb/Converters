@@ -26,11 +26,13 @@ namespace CodingSeb.Converters
         [ConstructorArgument("separator")]
         public string Separator { get; set; } = " ";
 
+        /// <inheritdoc/>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             return string.Join(Separator.EscapeForXaml(), values.ToList().ConvertAll(e => e.ToString()));
         }
 
+        /// <inheritdoc/>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return value.ToString().Split(new string[] { Separator.EscapeForXaml() }, StringSplitOptions.None);

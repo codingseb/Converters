@@ -31,11 +31,13 @@ namespace CodingSeb.Converters
         [ConstructorArgument("format")]
         public string Format { get; set; } = "{0}";
 
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return string.Format(Format.EscapeForXaml(), value);
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)

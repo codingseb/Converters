@@ -47,6 +47,7 @@ namespace CodingSeb.Converters
         /// </summary>
         public bool AsUri { get; set; }
 
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
@@ -80,6 +81,7 @@ namespace CodingSeb.Converters
             return AsUri ? (object)new Uri(result) : result;
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return Path.GetFileNameWithoutExtension(value.ToString());

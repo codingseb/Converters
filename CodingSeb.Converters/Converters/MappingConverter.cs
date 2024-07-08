@@ -247,6 +247,7 @@ namespace CodingSeb.Converters
         public object DefaultValue { get; set; } = DependencyProperty.UnsetValue;
         public object DefaultValueForConvertBack { get; set; } = DependencyProperty.UnsetValue;
 
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
@@ -259,6 +260,7 @@ namespace CodingSeb.Converters
             }
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try

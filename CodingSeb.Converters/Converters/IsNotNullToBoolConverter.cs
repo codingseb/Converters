@@ -18,6 +18,7 @@ namespace CodingSeb.Converters
         /// </summary>
         public object ConvertBackValueForTrue { get; set; }
 
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
@@ -30,6 +31,7 @@ namespace CodingSeb.Converters
             }
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return (bool)value ? ConvertBackValueForTrue : null;

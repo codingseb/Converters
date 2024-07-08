@@ -88,6 +88,7 @@ namespace CodingSeb.Converters
         private string[] parameters;
         private System.Collections.Generic.List<IValueConverter> converters;
 
+        /// <inheritdoc/>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             converters = Converters.ToList();
@@ -143,6 +144,7 @@ namespace CodingSeb.Converters
             return parameter;
         }
 
+        /// <inheritdoc/>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             converters = Converters.ToList();

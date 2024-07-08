@@ -38,6 +38,7 @@ namespace CodingSeb.Converters
         [ConstructorArgument("newString")]
         public string NewString { get; set; } = string.Empty;
 
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (OldString.Equals(string.Empty))
@@ -50,6 +51,7 @@ namespace CodingSeb.Converters
             }
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (NewString.Equals(string.Empty))

@@ -12,6 +12,7 @@ namespace CodingSeb.Converters
     /// </summary>
     public class ExclusiveBoolToEnumOrEquatableParameterConverter : BaseConverter, IValueConverter
     {
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
@@ -22,6 +23,7 @@ namespace CodingSeb.Converters
             return DependencyProperty.UnsetValue;
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is bool x && x)

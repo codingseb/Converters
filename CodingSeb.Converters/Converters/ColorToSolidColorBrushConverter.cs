@@ -10,6 +10,7 @@ namespace CodingSeb.Converters
     /// </summary>
     public class ColorToSolidColorBrushConverter : BaseConverter, IValueConverter
     {
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is Color color)
@@ -19,6 +20,7 @@ namespace CodingSeb.Converters
             return null;
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is SolidColorBrush brush)

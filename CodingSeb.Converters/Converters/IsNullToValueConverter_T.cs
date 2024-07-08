@@ -27,6 +27,7 @@ namespace CodingSeb.Converters
 
         #region IValueConverter Membres
 
+        /// <inheritdoc/>
         public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
@@ -39,6 +40,7 @@ namespace CodingSeb.Converters
             }
         }
 
+        /// <inheritdoc/>
         public virtual object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
@@ -49,6 +51,7 @@ namespace CodingSeb.Converters
 
     public class IsNullToStringConverter : IsNullToValueConverters<string>
     {
+        /// <inheritdoc/>
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
@@ -61,5 +64,6 @@ namespace CodingSeb.Converters
             }
         }
     }
+
     public class IsNullToObjectConverter : IsNullToValueConverters<object> { }
 }

@@ -13,6 +13,7 @@ namespace CodingSeb.Converters
     {
         public bool? InDesigner { get; set; }
 
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
@@ -27,6 +28,7 @@ namespace CodingSeb.Converters
             return !(bool)value;
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return !(bool)value;

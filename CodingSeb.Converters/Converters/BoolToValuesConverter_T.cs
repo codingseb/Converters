@@ -67,6 +67,7 @@ namespace CodingSeb.Converters
 
         #region IValueConverter Membres
 
+        /// <inheritdoc/>
         public virtual object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             bool bValue = OnReverseNullValue;
@@ -92,6 +93,7 @@ namespace CodingSeb.Converters
             return bValue ? TrueValue : FalseValue;
         }
 
+        /// <inheritdoc/>
         public virtual object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             bool result = OnReverseNullValue;
@@ -204,6 +206,7 @@ namespace CodingSeb.Converters
     /// </summary>
     public class BoolToBitmapImageConverter : BoolToValuesGenericConverter<BitmapImage>
     {
+        /// <inheritdoc/>
         public override object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             bool result = OnReverseNullValue;

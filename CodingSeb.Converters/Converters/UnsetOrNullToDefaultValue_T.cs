@@ -22,6 +22,7 @@ namespace CodingSeb.Converters
         /// </summary>
         public T OnNullValue { get; set; }
 
+        /// <inheritdoc/>
         public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
@@ -42,6 +43,7 @@ namespace CodingSeb.Converters
             }
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
@@ -51,6 +53,7 @@ namespace CodingSeb.Converters
     public class UnsetOrNullToBoolValue : UnsetOrNullToDefaultValue<bool> { };
     public class UnsetOrNullToStringValue : UnsetOrNullToDefaultValue<string>
     {
+        /// <inheritdoc/>
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) && InDesigner != null)
@@ -71,5 +74,6 @@ namespace CodingSeb.Converters
             }
         }
     };
+
     public class UnsetOrNullToObjectalue : UnsetOrNullToDefaultValue<object> { };
 }

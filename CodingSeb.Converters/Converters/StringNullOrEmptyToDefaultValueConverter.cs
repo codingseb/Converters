@@ -26,11 +26,13 @@ namespace CodingSeb.Converters
         [ConstructorArgument("defaultValue")]
         public string DefaultValue { get; set; }
 
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return string.IsNullOrEmpty(value as string) ? (parameter ?? DefaultValue.EscapeForXaml()) : value;
         }
 
+        /// <inheritdoc/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
