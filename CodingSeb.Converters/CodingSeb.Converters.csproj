@@ -10,8 +10,8 @@
     <Copyright>Copyright © Coding Seb 2019</Copyright>
     <PackageProjectUrl>https://github.com/codingseb/Converters</PackageProjectUrl>
     <Authors>CodingSeb</Authors>
-    <Version>1.0.7</Version>
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
+    <Version>1.0.8</Version>
+    <AssemblyVersion>1.0.8.0</AssemblyVersion>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
   </PropertyGroup>
